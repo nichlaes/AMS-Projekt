@@ -1,0 +1,685 @@
+
+battleships.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800200  00800200  000003c2  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         0000036e  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .comment      00000030  00000000  00000000  000003c2  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000003f4  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 000000c0  00000000  00000000  00000434  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   000013b5  00000000  00000000  000004f4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000dc7  00000000  00000000  000018a9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   0000066f  00000000  00000000  00002670  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  000001b8  00000000  00000000  00002ce0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    000006b5  00000000  00000000  00002e98  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000005eb  00000000  00000000  0000354d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000090  00000000  00000000  00003b38  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	71 c0       	rjmp	.+226    	; 0xe4 <__ctors_end>
+   2:	00 00       	nop
+   4:	79 c0       	rjmp	.+242    	; 0xf8 <__bad_interrupt>
+   6:	00 00       	nop
+   8:	77 c0       	rjmp	.+238    	; 0xf8 <__bad_interrupt>
+   a:	00 00       	nop
+   c:	75 c0       	rjmp	.+234    	; 0xf8 <__bad_interrupt>
+   e:	00 00       	nop
+  10:	73 c0       	rjmp	.+230    	; 0xf8 <__bad_interrupt>
+  12:	00 00       	nop
+  14:	71 c0       	rjmp	.+226    	; 0xf8 <__bad_interrupt>
+  16:	00 00       	nop
+  18:	6f c0       	rjmp	.+222    	; 0xf8 <__bad_interrupt>
+  1a:	00 00       	nop
+  1c:	6d c0       	rjmp	.+218    	; 0xf8 <__bad_interrupt>
+  1e:	00 00       	nop
+  20:	6b c0       	rjmp	.+214    	; 0xf8 <__bad_interrupt>
+  22:	00 00       	nop
+  24:	69 c0       	rjmp	.+210    	; 0xf8 <__bad_interrupt>
+  26:	00 00       	nop
+  28:	67 c0       	rjmp	.+206    	; 0xf8 <__bad_interrupt>
+  2a:	00 00       	nop
+  2c:	65 c0       	rjmp	.+202    	; 0xf8 <__bad_interrupt>
+  2e:	00 00       	nop
+  30:	63 c0       	rjmp	.+198    	; 0xf8 <__bad_interrupt>
+  32:	00 00       	nop
+  34:	61 c0       	rjmp	.+194    	; 0xf8 <__bad_interrupt>
+  36:	00 00       	nop
+  38:	5f c0       	rjmp	.+190    	; 0xf8 <__bad_interrupt>
+  3a:	00 00       	nop
+  3c:	5d c0       	rjmp	.+186    	; 0xf8 <__bad_interrupt>
+  3e:	00 00       	nop
+  40:	5b c0       	rjmp	.+182    	; 0xf8 <__bad_interrupt>
+  42:	00 00       	nop
+  44:	59 c0       	rjmp	.+178    	; 0xf8 <__bad_interrupt>
+  46:	00 00       	nop
+  48:	57 c0       	rjmp	.+174    	; 0xf8 <__bad_interrupt>
+  4a:	00 00       	nop
+  4c:	55 c0       	rjmp	.+170    	; 0xf8 <__bad_interrupt>
+  4e:	00 00       	nop
+  50:	53 c0       	rjmp	.+166    	; 0xf8 <__bad_interrupt>
+  52:	00 00       	nop
+  54:	51 c0       	rjmp	.+162    	; 0xf8 <__bad_interrupt>
+  56:	00 00       	nop
+  58:	4f c0       	rjmp	.+158    	; 0xf8 <__bad_interrupt>
+  5a:	00 00       	nop
+  5c:	4d c0       	rjmp	.+154    	; 0xf8 <__bad_interrupt>
+  5e:	00 00       	nop
+  60:	4b c0       	rjmp	.+150    	; 0xf8 <__bad_interrupt>
+  62:	00 00       	nop
+  64:	49 c0       	rjmp	.+146    	; 0xf8 <__bad_interrupt>
+  66:	00 00       	nop
+  68:	47 c0       	rjmp	.+142    	; 0xf8 <__bad_interrupt>
+  6a:	00 00       	nop
+  6c:	45 c0       	rjmp	.+138    	; 0xf8 <__bad_interrupt>
+  6e:	00 00       	nop
+  70:	43 c0       	rjmp	.+134    	; 0xf8 <__bad_interrupt>
+  72:	00 00       	nop
+  74:	41 c0       	rjmp	.+130    	; 0xf8 <__bad_interrupt>
+  76:	00 00       	nop
+  78:	3f c0       	rjmp	.+126    	; 0xf8 <__bad_interrupt>
+  7a:	00 00       	nop
+  7c:	3d c0       	rjmp	.+122    	; 0xf8 <__bad_interrupt>
+  7e:	00 00       	nop
+  80:	3b c0       	rjmp	.+118    	; 0xf8 <__bad_interrupt>
+  82:	00 00       	nop
+  84:	39 c0       	rjmp	.+114    	; 0xf8 <__bad_interrupt>
+  86:	00 00       	nop
+  88:	37 c0       	rjmp	.+110    	; 0xf8 <__bad_interrupt>
+  8a:	00 00       	nop
+  8c:	35 c0       	rjmp	.+106    	; 0xf8 <__bad_interrupt>
+  8e:	00 00       	nop
+  90:	33 c0       	rjmp	.+102    	; 0xf8 <__bad_interrupt>
+  92:	00 00       	nop
+  94:	31 c0       	rjmp	.+98     	; 0xf8 <__bad_interrupt>
+  96:	00 00       	nop
+  98:	2f c0       	rjmp	.+94     	; 0xf8 <__bad_interrupt>
+  9a:	00 00       	nop
+  9c:	2d c0       	rjmp	.+90     	; 0xf8 <__bad_interrupt>
+  9e:	00 00       	nop
+  a0:	2b c0       	rjmp	.+86     	; 0xf8 <__bad_interrupt>
+  a2:	00 00       	nop
+  a4:	29 c0       	rjmp	.+82     	; 0xf8 <__bad_interrupt>
+  a6:	00 00       	nop
+  a8:	27 c0       	rjmp	.+78     	; 0xf8 <__bad_interrupt>
+  aa:	00 00       	nop
+  ac:	25 c0       	rjmp	.+74     	; 0xf8 <__bad_interrupt>
+  ae:	00 00       	nop
+  b0:	23 c0       	rjmp	.+70     	; 0xf8 <__bad_interrupt>
+  b2:	00 00       	nop
+  b4:	21 c0       	rjmp	.+66     	; 0xf8 <__bad_interrupt>
+  b6:	00 00       	nop
+  b8:	1f c0       	rjmp	.+62     	; 0xf8 <__bad_interrupt>
+  ba:	00 00       	nop
+  bc:	1d c0       	rjmp	.+58     	; 0xf8 <__bad_interrupt>
+  be:	00 00       	nop
+  c0:	1b c0       	rjmp	.+54     	; 0xf8 <__bad_interrupt>
+  c2:	00 00       	nop
+  c4:	19 c0       	rjmp	.+50     	; 0xf8 <__bad_interrupt>
+  c6:	00 00       	nop
+  c8:	17 c0       	rjmp	.+46     	; 0xf8 <__bad_interrupt>
+  ca:	00 00       	nop
+  cc:	15 c0       	rjmp	.+42     	; 0xf8 <__bad_interrupt>
+  ce:	00 00       	nop
+  d0:	13 c0       	rjmp	.+38     	; 0xf8 <__bad_interrupt>
+  d2:	00 00       	nop
+  d4:	11 c0       	rjmp	.+34     	; 0xf8 <__bad_interrupt>
+  d6:	00 00       	nop
+  d8:	0f c0       	rjmp	.+30     	; 0xf8 <__bad_interrupt>
+  da:	00 00       	nop
+  dc:	0d c0       	rjmp	.+26     	; 0xf8 <__bad_interrupt>
+  de:	00 00       	nop
+  e0:	0b c0       	rjmp	.+22     	; 0xf8 <__bad_interrupt>
+	...
+
+000000e4 <__ctors_end>:
+  e4:	11 24       	eor	r1, r1
+  e6:	1f be       	out	0x3f, r1	; 63
+  e8:	cf ef       	ldi	r28, 0xFF	; 255
+  ea:	d1 e2       	ldi	r29, 0x21	; 33
+  ec:	de bf       	out	0x3e, r29	; 62
+  ee:	cd bf       	out	0x3d, r28	; 61
+  f0:	00 e0       	ldi	r16, 0x00	; 0
+  f2:	0c bf       	out	0x3c, r16	; 60
+  f4:	32 d0       	rcall	.+100    	; 0x15a <main>
+  f6:	39 c1       	rjmp	.+626    	; 0x36a <_exit>
+
+000000f8 <__bad_interrupt>:
+  f8:	83 cf       	rjmp	.-250    	; 0x0 <__vectors>
+
+000000fa <DrawBackground>:
+#define tileWidth 64
+#define tileHeight 60
+#define displayWidth 320
+#define displayHeight 240
+
+void DrawBackground(){
+  fa:	cf 92       	push	r12
+  fc:	ef 92       	push	r14
+  fe:	0f 93       	push	r16
+ 100:	cf 93       	push	r28
+ 102:	df 93       	push	r29
+ 104:	cc e3       	ldi	r28, 0x3C	; 60
+ 106:	d0 e0       	ldi	r29, 0x00	; 0
+	int xTiles = displayWidth/tileWidth;
+	int yTiles = displayHeight/tileHeight;
+	
+	for (unsigned int i = 1; i < xTiles+1; i++)
+	{
+		FillRectangle(i*tileWidth-4,0,4,240,0,0,0);
+ 108:	c1 2c       	mov	r12, r1
+ 10a:	e1 2c       	mov	r14, r1
+ 10c:	00 e0       	ldi	r16, 0x00	; 0
+ 10e:	20 ef       	ldi	r18, 0xF0	; 240
+ 110:	30 e0       	ldi	r19, 0x00	; 0
+ 112:	44 e0       	ldi	r20, 0x04	; 4
+ 114:	50 e0       	ldi	r21, 0x00	; 0
+ 116:	60 e0       	ldi	r22, 0x00	; 0
+ 118:	70 e0       	ldi	r23, 0x00	; 0
+ 11a:	ce 01       	movw	r24, r28
+ 11c:	d1 d0       	rcall	.+418    	; 0x2c0 <FillRectangle>
+ 11e:	c0 5c       	subi	r28, 0xC0	; 192
+ 120:	df 4f       	sbci	r29, 0xFF	; 255
+
+void DrawBackground(){
+	int xTiles = displayWidth/tileWidth;
+	int yTiles = displayHeight/tileHeight;
+	
+	for (unsigned int i = 1; i < xTiles+1; i++)
+ 122:	cc 37       	cpi	r28, 0x7C	; 124
+ 124:	81 e0       	ldi	r24, 0x01	; 1
+ 126:	d8 07       	cpc	r29, r24
+ 128:	79 f7       	brne	.-34     	; 0x108 <DrawBackground+0xe>
+ 12a:	cb ef       	ldi	r28, 0xFB	; 251
+ 12c:	df ef       	ldi	r29, 0xFF	; 255
+	{
+		FillRectangle(i*tileWidth-4,0,4,240,0,0,0);
+	}
+	for (unsigned int i = 0; i < yTiles+1; i++)
+	{
+		FillRectangle(0,i*tileHeight-5,320,5,0,0,0);		
+ 12e:	c1 2c       	mov	r12, r1
+ 130:	e1 2c       	mov	r14, r1
+ 132:	00 e0       	ldi	r16, 0x00	; 0
+ 134:	25 e0       	ldi	r18, 0x05	; 5
+ 136:	30 e0       	ldi	r19, 0x00	; 0
+ 138:	40 e4       	ldi	r20, 0x40	; 64
+ 13a:	51 e0       	ldi	r21, 0x01	; 1
+ 13c:	be 01       	movw	r22, r28
+ 13e:	80 e0       	ldi	r24, 0x00	; 0
+ 140:	90 e0       	ldi	r25, 0x00	; 0
+ 142:	be d0       	rcall	.+380    	; 0x2c0 <FillRectangle>
+ 144:	ec 96       	adiw	r28, 0x3c	; 60
+	
+	for (unsigned int i = 1; i < xTiles+1; i++)
+	{
+		FillRectangle(i*tileWidth-4,0,4,240,0,0,0);
+	}
+	for (unsigned int i = 0; i < yTiles+1; i++)
+ 146:	c7 32       	cpi	r28, 0x27	; 39
+ 148:	81 e0       	ldi	r24, 0x01	; 1
+ 14a:	d8 07       	cpc	r29, r24
+ 14c:	81 f7       	brne	.-32     	; 0x12e <DrawBackground+0x34>
+	{
+		FillRectangle(0,i*tileHeight-5,320,5,0,0,0);		
+	}
+ 14e:	df 91       	pop	r29
+ 150:	cf 91       	pop	r28
+ 152:	0f 91       	pop	r16
+ 154:	ef 90       	pop	r14
+ 156:	cf 90       	pop	r12
+ 158:	08 95       	ret
+
+0000015a <main>:
+#include "Draw.h"
+
+
+int main(void)
+{
+	DisplayInit();
+ 15a:	38 d0       	rcall	.+112    	; 0x1cc <DisplayInit>
+	DrawBackground();
+ 15c:	ce df       	rcall	.-100    	; 0xfa <DrawBackground>
+    while (1) 
+    {
+		DisplayOn();
+ 15e:	1a d0       	rcall	.+52     	; 0x194 <DisplayOn>
+ 160:	fe cf       	rjmp	.-4      	; 0x15e <main+0x4>
+
+00000162 <WriteCommand>:
+ 162:	5f 98       	cbi	0x0b, 7	; 11
+	InterfacePixelFormat(0b00000101);
+}
+
+void DisplayOff()
+{
+	WriteCommand(0x28);
+ 164:	a1 98       	cbi	0x14, 1	; 20
+ 166:	a2 98       	cbi	0x14, 2	; 20
+ 168:	00 00       	nop
+ 16a:	88 b9       	out	0x08, r24	; 8
+ 16c:	a2 9a       	sbi	0x14, 2	; 20
+ 16e:	a1 9a       	sbi	0x14, 1	; 20
+ 170:	5f 9a       	sbi	0x0b, 7	; 11
+ 172:	8f e3       	ldi	r24, 0x3F	; 63
+ 174:	9f e1       	ldi	r25, 0x1F	; 31
+ 176:	01 97       	sbiw	r24, 0x01	; 1
+ 178:	f1 f7       	brne	.-4      	; 0x176 <WriteCommand+0x14>
+ 17a:	00 c0       	rjmp	.+0      	; 0x17c <WriteCommand+0x1a>
+ 17c:	00 00       	nop
+ 17e:	08 95       	ret
+
+00000180 <WriteData>:
+ 180:	5f 9a       	sbi	0x0b, 7	; 11
+ 182:	a1 98       	cbi	0x14, 1	; 20
+ 184:	a2 98       	cbi	0x14, 2	; 20
+ 186:	00 00       	nop
+ 188:	92 b9       	out	0x02, r25	; 2
+ 18a:	88 b9       	out	0x08, r24	; 8
+ 18c:	a2 9a       	sbi	0x14, 2	; 20
+ 18e:	a1 9a       	sbi	0x14, 1	; 20
+ 190:	5f 98       	cbi	0x0b, 7	; 11
+ 192:	08 95       	ret
+
+00000194 <DisplayOn>:
+}
+
+void DisplayOn()
+{
+	WriteCommand(0x29);
+ 194:	89 e2       	ldi	r24, 0x29	; 41
+ 196:	90 e0       	ldi	r25, 0x00	; 0
+ 198:	e4 cf       	rjmp	.-56     	; 0x162 <WriteCommand>
+ 19a:	08 95       	ret
+
+0000019c <SleepOut>:
+}
+
+void SleepOut()
+{
+	WriteCommand(0x11);
+ 19c:	81 e1       	ldi	r24, 0x11	; 17
+ 19e:	90 e0       	ldi	r25, 0x00	; 0
+ 1a0:	e0 cf       	rjmp	.-64     	; 0x162 <WriteCommand>
+ 1a2:	08 95       	ret
+
+000001a4 <MemoryAccessControl>:
+}
+
+void MemoryAccessControl(unsigned char parameter)
+{
+ 1a4:	cf 93       	push	r28
+ 1a6:	c8 2f       	mov	r28, r24
+	WriteCommand(0x36);
+ 1a8:	86 e3       	ldi	r24, 0x36	; 54
+ 1aa:	90 e0       	ldi	r25, 0x00	; 0
+ 1ac:	da df       	rcall	.-76     	; 0x162 <WriteCommand>
+		
+	WriteData(parameter);
+ 1ae:	8c 2f       	mov	r24, r28
+ 1b0:	90 e0       	ldi	r25, 0x00	; 0
+ 1b2:	e6 df       	rcall	.-52     	; 0x180 <WriteData>
+}
+ 1b4:	cf 91       	pop	r28
+ 1b6:	08 95       	ret
+
+000001b8 <InterfacePixelFormat>:
+
+void InterfacePixelFormat(unsigned char parameter)
+{
+ 1b8:	cf 93       	push	r28
+ 1ba:	c8 2f       	mov	r28, r24
+	WriteCommand(0x3A);
+ 1bc:	8a e3       	ldi	r24, 0x3A	; 58
+ 1be:	90 e0       	ldi	r25, 0x00	; 0
+ 1c0:	d0 df       	rcall	.-96     	; 0x162 <WriteCommand>
+	WriteData(parameter);
+ 1c2:	8c 2f       	mov	r24, r28
+ 1c4:	90 e0       	ldi	r25, 0x00	; 0
+ 1c6:	dc df       	rcall	.-72     	; 0x180 <WriteData>
+}
+ 1c8:	cf 91       	pop	r28
+ 1ca:	08 95       	ret
+
+000001cc <DisplayInit>:
+
+// Initializes (resets) the display
+void DisplayInit()
+{
+	//Port setup
+	DDRA = 0xFF;
+ 1cc:	9f ef       	ldi	r25, 0xFF	; 255
+ 1ce:	91 b9       	out	0x01, r25	; 1
+	DDRB |= 0b00001111;
+ 1d0:	84 b1       	in	r24, 0x04	; 4
+ 1d2:	8f 60       	ori	r24, 0x0F	; 15
+ 1d4:	84 b9       	out	0x04, r24	; 4
+	DDRG |= 0b00000111;
+ 1d6:	83 b3       	in	r24, 0x13	; 19
+ 1d8:	87 60       	ori	r24, 0x07	; 7
+ 1da:	83 bb       	out	0x13, r24	; 19
+	DDRD |= 0b10000000;
+ 1dc:	57 9a       	sbi	0x0a, 7	; 10
+	DDRC = 0xFF; // Port C output
+ 1de:	97 b9       	out	0x07, r25	; 7
+	
+	PORTG |= 0b00000111;	
+ 1e0:	84 b3       	in	r24, 0x14	; 20
+ 1e2:	87 60       	ori	r24, 0x07	; 7
+ 1e4:	84 bb       	out	0x14, r24	; 20
+	PORTD |= 0b10000000;
+ 1e6:	5f 9a       	sbi	0x0b, 7	; 11
+	
+	//Reset low
+	PORTG &= ~(1<<RST_BIT); 
+ 1e8:	a0 98       	cbi	0x14, 0	; 20
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 1ea:	2f ef       	ldi	r18, 0xFF	; 255
+ 1ec:	89 e6       	ldi	r24, 0x69	; 105
+ 1ee:	98 e1       	ldi	r25, 0x18	; 24
+ 1f0:	21 50       	subi	r18, 0x01	; 1
+ 1f2:	80 40       	sbci	r24, 0x00	; 0
+ 1f4:	90 40       	sbci	r25, 0x00	; 0
+ 1f6:	e1 f7       	brne	.-8      	; 0x1f0 <DisplayInit+0x24>
+ 1f8:	00 c0       	rjmp	.+0      	; 0x1fa <DisplayInit+0x2e>
+ 1fa:	00 00       	nop
+	_delay_ms(500);
+	// Reset high
+	PORTG |= 1<<RST_BIT; 
+ 1fc:	a0 9a       	sbi	0x14, 0	; 20
+ 1fe:	2f ef       	ldi	r18, 0xFF	; 255
+ 200:	88 e5       	ldi	r24, 0x58	; 88
+ 202:	96 e0       	ldi	r25, 0x06	; 6
+ 204:	21 50       	subi	r18, 0x01	; 1
+ 206:	80 40       	sbci	r24, 0x00	; 0
+ 208:	90 40       	sbci	r25, 0x00	; 0
+ 20a:	e1 f7       	brne	.-8      	; 0x204 <DisplayInit+0x38>
+ 20c:	00 c0       	rjmp	.+0      	; 0x20e <DisplayInit+0x42>
+ 20e:	00 00       	nop
+	_delay_ms(130); //Configure here
+	//Exit Sleep Mode
+	SleepOut();
+ 210:	c5 df       	rcall	.-118    	; 0x19c <SleepOut>
+	// Display on
+	DisplayOn();
+ 212:	c0 df       	rcall	.-128    	; 0x194 <DisplayOn>
+	// Set bit BGR (scanning direction)
+	MemoryAccessControl(0b00001000);
+ 214:	88 e0       	ldi	r24, 0x08	; 8
+ 216:	c6 df       	rcall	.-116    	; 0x1a4 <MemoryAccessControl>
+	// 16 bits (2 bytes) per pixel
+	InterfacePixelFormat(0b00000101);
+ 218:	85 e0       	ldi	r24, 0x05	; 5
+ 21a:	ce cf       	rjmp	.-100    	; 0x1b8 <InterfacePixelFormat>
+ 21c:	08 95       	ret
+
+0000021e <MemoryWrite>:
+ 21e:	8c e2       	ldi	r24, 0x2C	; 44
+	WriteData(parameter);
+}
+
+void MemoryWrite()
+{
+	WriteCommand(0x2C);
+ 220:	90 e0       	ldi	r25, 0x00	; 0
+ 222:	9f cf       	rjmp	.-194    	; 0x162 <WriteCommand>
+ 224:	08 95       	ret
+
+00000226 <WritePixel>:
+}
+
+// Red 0-31, Green 0-63, Blue 0-31
+void WritePixel(unsigned char Red, unsigned char Green, unsigned char Blue)
+{
+	unsigned int color = Red<<11;
+ 226:	28 2f       	mov	r18, r24
+ 228:	30 e0       	ldi	r19, 0x00	; 0
+ 22a:	32 2f       	mov	r19, r18
+ 22c:	22 27       	eor	r18, r18
+ 22e:	33 0f       	add	r19, r19
+ 230:	33 0f       	add	r19, r19
+ 232:	33 0f       	add	r19, r19
+	color |= Green<<5;
+	color |= Blue<<0;
+	  
+	WriteData(color);
+ 234:	50 e2       	ldi	r21, 0x20	; 32
+ 236:	65 9f       	mul	r22, r21
+ 238:	c0 01       	movw	r24, r0
+ 23a:	11 24       	eor	r1, r1
+ 23c:	84 2b       	or	r24, r20
+ 23e:	82 2b       	or	r24, r18
+ 240:	93 2b       	or	r25, r19
+ 242:	9e cf       	rjmp	.-196    	; 0x180 <WriteData>
+ 244:	08 95       	ret
+
+00000246 <SetColumnAddress>:
+}
+
+// Set Column Address (0-239), Start > End
+void SetColumnAddress(unsigned int Start, unsigned int End)
+{
+ 246:	0f 93       	push	r16
+ 248:	1f 93       	push	r17
+ 24a:	cf 93       	push	r28
+ 24c:	df 93       	push	r29
+	if (Start < End && End < 240)
+ 24e:	86 17       	cp	r24, r22
+ 250:	97 07       	cpc	r25, r23
+ 252:	90 f4       	brcc	.+36     	; 0x278 <SetColumnAddress+0x32>
+ 254:	60 3f       	cpi	r22, 0xF0	; 240
+ 256:	71 05       	cpc	r23, r1
+ 258:	78 f4       	brcc	.+30     	; 0x278 <SetColumnAddress+0x32>
+ 25a:	eb 01       	movw	r28, r22
+ 25c:	8c 01       	movw	r16, r24
+	{
+		WriteCommand(0x2A);
+ 25e:	8a e2       	ldi	r24, 0x2A	; 42
+ 260:	90 e0       	ldi	r25, 0x00	; 0
+ 262:	7f df       	rcall	.-258    	; 0x162 <WriteCommand>
+		WriteData(Start >> 8);
+ 264:	81 2f       	mov	r24, r17
+ 266:	90 e0       	ldi	r25, 0x00	; 0
+ 268:	8b df       	rcall	.-234    	; 0x180 <WriteData>
+		WriteData(Start);
+ 26a:	c8 01       	movw	r24, r16
+ 26c:	89 df       	rcall	.-238    	; 0x180 <WriteData>
+		WriteData(End >> 8);
+ 26e:	8d 2f       	mov	r24, r29
+ 270:	90 e0       	ldi	r25, 0x00	; 0
+ 272:	86 df       	rcall	.-244    	; 0x180 <WriteData>
+		WriteData(End);
+ 274:	ce 01       	movw	r24, r28
+ 276:	84 df       	rcall	.-248    	; 0x180 <WriteData>
+ 278:	df 91       	pop	r29
+	}
+	
+}
+ 27a:	cf 91       	pop	r28
+ 27c:	1f 91       	pop	r17
+ 27e:	0f 91       	pop	r16
+ 280:	08 95       	ret
+
+00000282 <SetPageAddress>:
+ 282:	0f 93       	push	r16
+
+// Set Page Address (0-319), Start > End
+void SetPageAddress(unsigned int Start, unsigned int End)
+{
+ 284:	1f 93       	push	r17
+ 286:	cf 93       	push	r28
+ 288:	df 93       	push	r29
+	if (Start < End && End < 320)
+ 28a:	86 17       	cp	r24, r22
+ 28c:	97 07       	cpc	r25, r23
+ 28e:	98 f4       	brcc	.+38     	; 0x2b6 <SetPageAddress+0x34>
+ 290:	60 34       	cpi	r22, 0x40	; 64
+ 292:	21 e0       	ldi	r18, 0x01	; 1
+ 294:	72 07       	cpc	r23, r18
+ 296:	78 f4       	brcc	.+30     	; 0x2b6 <SetPageAddress+0x34>
+ 298:	eb 01       	movw	r28, r22
+ 29a:	8c 01       	movw	r16, r24
+	{
+		WriteCommand(0x2B);
+ 29c:	8b e2       	ldi	r24, 0x2B	; 43
+ 29e:	90 e0       	ldi	r25, 0x00	; 0
+ 2a0:	60 df       	rcall	.-320    	; 0x162 <WriteCommand>
+		WriteData(Start >> 8);
+ 2a2:	81 2f       	mov	r24, r17
+ 2a4:	90 e0       	ldi	r25, 0x00	; 0
+ 2a6:	6c df       	rcall	.-296    	; 0x180 <WriteData>
+		WriteData(Start);
+ 2a8:	c8 01       	movw	r24, r16
+ 2aa:	6a df       	rcall	.-300    	; 0x180 <WriteData>
+		WriteData(End >> 8);
+ 2ac:	8d 2f       	mov	r24, r29
+ 2ae:	90 e0       	ldi	r25, 0x00	; 0
+ 2b0:	67 df       	rcall	.-306    	; 0x180 <WriteData>
+		WriteData(End);
+ 2b2:	ce 01       	movw	r24, r28
+ 2b4:	65 df       	rcall	.-310    	; 0x180 <WriteData>
+ 2b6:	df 91       	pop	r29
+	}
+}
+ 2b8:	cf 91       	pop	r28
+ 2ba:	1f 91       	pop	r17
+ 2bc:	0f 91       	pop	r16
+ 2be:	08 95       	ret
+
+000002c0 <FillRectangle>:
+ 2c0:	4f 92       	push	r4
+// Fills rectangle with specified color
+// (StartX,StartY) = Upper left corner. X horizontal (0-319) , Y vertical (0-239).
+// Height (1-240) is vertical. Width (1-320) is horizontal.
+// R-G-B = 5-6-5 bits.
+void FillRectangle(unsigned int StartX, unsigned int StartY, unsigned int Width, unsigned int Height, unsigned char Red, unsigned char Green, unsigned char Blue)
+{
+ 2c2:	5f 92       	push	r5
+ 2c4:	6f 92       	push	r6
+ 2c6:	7f 92       	push	r7
+ 2c8:	8f 92       	push	r8
+ 2ca:	9f 92       	push	r9
+ 2cc:	af 92       	push	r10
+ 2ce:	bf 92       	push	r11
+ 2d0:	cf 92       	push	r12
+ 2d2:	ef 92       	push	r14
+ 2d4:	0f 93       	push	r16
+ 2d6:	3b 01       	movw	r6, r22
+ 2d8:	5a 01       	movw	r10, r20
+ 2da:	49 01       	movw	r8, r18
+	SetPageAddress(StartX,StartX+Width-1);
+ 2dc:	ba 01       	movw	r22, r20
+ 2de:	61 50       	subi	r22, 0x01	; 1
+ 2e0:	71 09       	sbc	r23, r1
+ 2e2:	68 0f       	add	r22, r24
+ 2e4:	79 1f       	adc	r23, r25
+ 2e6:	cd df       	rcall	.-102    	; 0x282 <SetPageAddress>
+	SetColumnAddress(StartY, StartY+Height-1);
+ 2e8:	b4 01       	movw	r22, r8
+ 2ea:	61 50       	subi	r22, 0x01	; 1
+ 2ec:	71 09       	sbc	r23, r1
+ 2ee:	66 0d       	add	r22, r6
+ 2f0:	77 1d       	adc	r23, r7
+ 2f2:	c3 01       	movw	r24, r6
+	MemoryWrite();
+ 2f4:	a8 df       	rcall	.-176    	; 0x246 <SetColumnAddress>
+	for (long int i =0; i< (unsigned long int)Height*Width;i++)
+ 2f6:	93 df       	rcall	.-218    	; 0x21e <MemoryWrite>
+ 2f8:	94 01       	movw	r18, r8
+ 2fa:	d5 01       	movw	r26, r10
+ 2fc:	27 d0       	rcall	.+78     	; 0x34c <__umulhisi3>
+ 2fe:	61 15       	cp	r22, r1
+ 300:	71 05       	cpc	r23, r1
+ 302:	81 05       	cpc	r24, r1
+ 304:	91 05       	cpc	r25, r1
+ 306:	99 f0       	breq	.+38     	; 0x32e <FillRectangle+0x6e>
+ 308:	2b 01       	movw	r4, r22
+ 30a:	3c 01       	movw	r6, r24
+ 30c:	81 2c       	mov	r8, r1
+ 30e:	91 2c       	mov	r9, r1
+	{
+		WritePixel(Red,Green,Blue);
+ 310:	54 01       	movw	r10, r8
+ 312:	4c 2d       	mov	r20, r12
+ 314:	6e 2d       	mov	r22, r14
+ 316:	80 2f       	mov	r24, r16
+ 318:	86 df       	rcall	.-244    	; 0x226 <WritePixel>
+void FillRectangle(unsigned int StartX, unsigned int StartY, unsigned int Width, unsigned int Height, unsigned char Red, unsigned char Green, unsigned char Blue)
+{
+	SetPageAddress(StartX,StartX+Width-1);
+	SetColumnAddress(StartY, StartY+Height-1);
+	MemoryWrite();
+	for (long int i =0; i< (unsigned long int)Height*Width;i++)
+ 31a:	8f ef       	ldi	r24, 0xFF	; 255
+ 31c:	88 1a       	sub	r8, r24
+ 31e:	98 0a       	sbc	r9, r24
+ 320:	a8 0a       	sbc	r10, r24
+ 322:	b8 0a       	sbc	r11, r24
+ 324:	84 14       	cp	r8, r4
+ 326:	95 04       	cpc	r9, r5
+ 328:	a6 04       	cpc	r10, r6
+ 32a:	b7 04       	cpc	r11, r7
+	{
+		WritePixel(Red,Green,Blue);
+	}
+	
+	WriteCommand(0);
+ 32c:	91 f7       	brne	.-28     	; 0x312 <FillRectangle+0x52>
+ 32e:	80 e0       	ldi	r24, 0x00	; 0
+ 330:	90 e0       	ldi	r25, 0x00	; 0
+ 332:	17 df       	rcall	.-466    	; 0x162 <WriteCommand>
+	
+ 334:	0f 91       	pop	r16
+ 336:	ef 90       	pop	r14
+ 338:	cf 90       	pop	r12
+ 33a:	bf 90       	pop	r11
+ 33c:	af 90       	pop	r10
+ 33e:	9f 90       	pop	r9
+ 340:	8f 90       	pop	r8
+ 342:	7f 90       	pop	r7
+ 344:	6f 90       	pop	r6
+ 346:	5f 90       	pop	r5
+ 348:	4f 90       	pop	r4
+ 34a:	08 95       	ret
+
+0000034c <__umulhisi3>:
+ 34c:	a2 9f       	mul	r26, r18
+ 34e:	b0 01       	movw	r22, r0
+ 350:	b3 9f       	mul	r27, r19
+ 352:	c0 01       	movw	r24, r0
+ 354:	a3 9f       	mul	r26, r19
+ 356:	70 0d       	add	r23, r0
+ 358:	81 1d       	adc	r24, r1
+ 35a:	11 24       	eor	r1, r1
+ 35c:	91 1d       	adc	r25, r1
+ 35e:	b2 9f       	mul	r27, r18
+ 360:	70 0d       	add	r23, r0
+ 362:	81 1d       	adc	r24, r1
+ 364:	11 24       	eor	r1, r1
+ 366:	91 1d       	adc	r25, r1
+ 368:	08 95       	ret
+
+0000036a <_exit>:
+ 36a:	f8 94       	cli
+
+0000036c <__stop_program>:
+ 36c:	ff cf       	rjmp	.-2      	; 0x36c <__stop_program>
