@@ -213,3 +213,15 @@ void delayNop(int times){
 		_NOP();
 	}
 }
+
+void writeSymbol(unsigned int data[], unsigned long int size){
+	unsigned char red=0b00000;
+	unsigned char green=0b000000;
+	unsigned char blue = 0b00000;
+		SetPageAddress(0,31);
+		SetColumnAddress(0,31);
+		
+	for(unsigned long int i=0;i<size;i++ ){
+		WritePixel(red, green,blue);
+	}
+}
