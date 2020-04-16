@@ -32,6 +32,16 @@ int main(void)
 ISR (INT4_vect)
 {
 	unsigned char data = readTouchInput();
+
+	for (int i=0; i<7; i++)
+	{
+		_delay_ms(2000);
+		if ((data>>i & 0b00000001) == 1)
+		{
+			DisplayOn();
+		} else DisplayOff();
+	}
+
 }
 
 

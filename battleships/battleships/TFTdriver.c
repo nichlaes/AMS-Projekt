@@ -83,6 +83,9 @@ void DisplayInit()
 	PORTG |= 0b00000111;	
 	PORTD |= 0b10000000;
 	
+	//Touch Ports
+	DDRE |= 0b00101000;
+	
 	//Reset low
 	PORTG &= ~(1<<RST_BIT); 
 	_delay_ms(500);
