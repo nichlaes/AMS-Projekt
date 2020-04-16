@@ -37,6 +37,7 @@
 #define CS_BIT  1
 #define RST_PORT PORTG
 #define RST_BIT 0
+#define CONTROL_BIT 0b10001000
 
 // LOCAL FUNCTIONS /////////////////////////////////////////////////////////////
 

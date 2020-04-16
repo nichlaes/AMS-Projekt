@@ -12,13 +12,35 @@
 #include "Draw.h"
 
 
+
 int main(void)
 {
+	initPENIRQ()
+	// Global interrupt enable
+	sei();
 	DisplayInit();
 	DrawBackground();
     while (1) 
     {
 		DisplayOn();
+		if (PORTD = )
+		{
+		}
     }
 }
 
+//INTERRUPTS RUTINES
+// Interrupt service rutine for INT2
+ISR (INT4_vect)
+{
+	
+}
+
+
+void initPENIRQ()
+{
+	// INT4:Falling edge
+	EICRB = 0b00000010;
+	// Enable extern interrupt INT4
+	EIMSK |= 0b00010000;
+}
