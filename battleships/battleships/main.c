@@ -6,6 +6,7 @@
  */ 
 
 #include <avr/io.h>
+#include <avr/interrupt.h>
 #define F_CPU 16000000
 #include <util/delay.h>
 #include "TFTdriver.h"
@@ -15,7 +16,7 @@
 
 int main(void)
 {
-	initPENIRQ()
+	initPENIRQ();
 	// Global interrupt enable
 	sei();
 	DisplayInit();
@@ -23,9 +24,6 @@ int main(void)
     while (1) 
     {
 		DisplayOn();
-		if (PORTD = )
-		{
-		}
     }
 }
 
@@ -33,7 +31,7 @@ int main(void)
 // Interrupt service rutine for INT2
 ISR (INT4_vect)
 {
-	
+	unsigned char data = readTouchInput();
 }
 
 

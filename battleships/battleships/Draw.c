@@ -28,5 +28,5 @@ void DrawBackground(){
 }
 
 void drawExample(){
-	WritePixel()
+	//WritePixel()
 }

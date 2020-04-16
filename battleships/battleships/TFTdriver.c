@@ -37,7 +37,6 @@
 #define CS_BIT  1
 #define RST_PORT PORTG
 #define RST_BIT 0
-#define CONTROL_BIT 0b10001000
 
 // LOCAL FUNCTIONS /////////////////////////////////////////////////////////////
 
@@ -186,4 +185,28 @@ void FillRectangle(unsigned int StartX, unsigned int StartY, unsigned int Width,
 	
 	WriteCommand(0);
 	
+}
+
+unsigned char readTouchInput()
+{
+	unsigned char controlbit = 0b10001000;
+	
+	PORTE &= 0b11110111;
+	
+	for (int i=0;i<7;i++){
+	PORTG |= (controlbit & 0b00000001<<i) <<5;
+	delayNop(4); //delay min 200ns
+	}
+	delayNop(5); //delay min 220ns wait for !busy
+	
+	unsigned char data;
+	for (int i=0;i<7;i++){
+		data |=  (0b00000001 & (PORTE>>5))<<i;
+	}
+	return data;
+}
+void delayNop(int times){
+	for (int i =0;i<times;i++){
+		_NOP();
+	}
 }
