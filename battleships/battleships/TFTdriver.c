@@ -80,11 +80,14 @@ void DisplayInit()
 	DDRD |= 0b10000000;
 	DDRC = 0xFF; // Port C output
 	
+	//Touch Ports
+	DDRE |= 0b00001000;
+	DDRE &= 0b11001111;
+	DDRH |= 0b00001000;
+	DDRG |= 0b00100000;
+	
 	PORTG |= 0b00000111;	
 	PORTD |= 0b10000000;
-	
-	//Touch Ports
-	DDRE |= 0b00101000;
 	
 	//Reset low
 	PORTG &= ~(1<<RST_BIT); 
@@ -190,24 +193,14 @@ void FillRectangle(unsigned int StartX, unsigned int StartY, unsigned int Width,
 	
 }
 
-unsigned char readTouchInput()
+unsigned int readTouchInput()
 {
 	unsigned char controlbit = 0b10001000;
-	
-	PORTE &= 0b11110111;
-	
-	for (int i=0;i<7;i++){
-	PORTG |= (controlbit & 0b00000001<<i) <<5;
-	delayNop(4); //delay min 200ns
-	}
-	delayNop(5); //delay min 220ns wait for !busy
-	
-	unsigned char data;
-	for (int i=0;i<7;i++){
-		data |=  (0b00000001 & (PORTE>>5))<<i;
-	}
-	return data;
+	writeTouchData(controlbit);
+	pulseCLK(); //Busy wait
+	return readTouchData();
 }
+
 void delayNop(int times){
 	for (int i =0;i<times;i++){
 		_NOP();
@@ -224,4 +217,32 @@ void writeSymbol(unsigned int data[], unsigned long int size){
 	for(unsigned long int i=0;i<size;i++ ){
 		WritePixel(red, green,blue);
 	}
+}
+
+void writeTouchData(unsigned int data){
+	PORTH &= ~(1<<3); //Sets CLK low
+	PORTE &= 0b11110111; //Sets CS low
+	delayNop(3);
+	for (int i=0;i<8;i++){
+		PORTG |= (data<<i & 0b10000000)>>2; //Sets D_IN
+		PORTH |= 1<<3; //Sets CLK high
+		delayNop(6); //delay min 200ns
+		PORTH &= ~(1<<3); //Sets CLK low
+	}
+}
+
+unsigned int readTouchData(){
+	unsigned int data = 0;
+	for (int i=0;i<12;i++){
+		data = data<<i;
+		pulseCLK();
+		data |=  (0b00000001 & (PORTE>>5));
+	}
+	return data;
+}
+
+void pulseCLK(){
+	PORTH &= 1<<3; //Sets CLK high
+	delayNop(1);
+	PORTH &= ~(1<<3); //Sets CLK low
 }

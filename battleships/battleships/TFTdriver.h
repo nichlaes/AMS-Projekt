@@ -30,8 +30,11 @@ void SetPageAddress(unsigned int Start, unsigned int End);
 void MemoryWrite();
 void FillRectangle(unsigned int StartX, unsigned int StartY, unsigned int Width, 
                    unsigned int Height, unsigned char Red, unsigned char Green, unsigned char Blue);
-unsigned char readTouchInput();
+unsigned int readTouchInput();
 void delayNop(int times);
-void writeSymbol();
+void writeSymbol(unsigned int data[], unsigned long int size);
+void writeTouchData(unsigned int);
+unsigned int readTouchData();
+void pulseCLK();
 
 
