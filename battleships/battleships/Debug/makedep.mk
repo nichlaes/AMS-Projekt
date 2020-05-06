@@ -4,6 +4,8 @@
 
 Draw.c
 
+fonts.c
+
 main.c
 
 TFTdriver.c
