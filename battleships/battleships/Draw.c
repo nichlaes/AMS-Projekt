@@ -37,8 +37,18 @@ void DrawText(char *text, unsigned int startx, unsigned int starty, unsigned int
 		writeSymbol(cx, 0b00001111, 0b00011111, 0b00001111, start, starty, 16, 16, size);
 	}
 	char *cx=getChar(*(text+0));
+}
 
-	//char *cx=getChar(*(text+0));
-	//writeSymbol(cx, 0b00001111, 0b00011111, 0b00001111, startx, starty, 8, 8, 2);
+void DrawShip(int size, unsigned int startx, unsigned int starty){
+	char *c=getStartShip();
+	writeSymbol(c, 0b00001111, 0b00011111, 0b00001111, (startx + 45-32), (starty +((45-32))), 16, 16, 2);
+	int i = 2;
+	for(;i<size;i++){
+		char *c=getMiddleShip();
+		writeSymbol(c, 0b00001111, 0b00011111, 0b00001111, (startx*(i-2) + 45), (starty +((45-32))), 16, 16, 2);
+		writeSymbol(c, 0b00001111, 0b00011111, 0b00001111, (startx*(i-2) + 45 + 42-32), (starty +((45-32))), 16, 16, 2);
 
+	}
+	char *cx=getEndShip();
+	writeSymbol(cx, 0b00001111, 0b00011111, 0b00001111, (startx + 45*(i-2) + 45-32), (starty +((45-32))), 16, 16, 2);
 }

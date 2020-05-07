@@ -15,8 +15,9 @@
 int main(void)
 {	
 	DisplayInit();
-	//DrawBackground();
-	DrawText("øØæÅÆå123456789", 0,0,1);
+	DrawBackground();
+	//DrawText("CC", 10,10,1);
+	DrawShip(3, 0,0);
 	DisplayOn();
 	// INT4:Falling edge
 	EICRB = 0b00000010;

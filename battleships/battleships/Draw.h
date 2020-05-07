@@ -13,6 +13,7 @@ void DrawBackground();
 //void DrawMissile();
 //void DrawShip();
 //void DrawText();
-void DrawX(char *text, unsigned int startx, unsigned int starty, unsigned int size);
+void DrawText(char *text, unsigned int startx, unsigned int starty, unsigned int size);
+void DrawShip(int size, unsigned int startx, unsigned int starty);
 
 #endif /* DRAW_H_ */
