@@ -218,7 +218,7 @@ unsigned int sizeMultiplier
 	MemoryWrite();
 		
 	
-	for (int i = 0;i<5;i++){
+	for (int i = 0;i<16;i++){
 		char cfirst=*(data+(i*2));
 		char csecond=*(data+((i*2)+1));
 		for(int q=0;q<sizeMultiplier;q++){
