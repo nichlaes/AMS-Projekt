@@ -335,18 +335,32 @@ char* numbers[11] = {code0, code1, code2, code3, code4, code5, code6, code7, cod
 
 char* getChar(char c)
 {	
-	if(c == 4 || c == 32)
-	{
-		char* res = code_space;
+	if(47 < c && c < 59){//numbers
+		char* res = numbers[c-48];
 		return res;
 	}
-	if(c==248){
+	else if(c > 96 && c < 123){//small chars, print big chars
+		char* res = Characters[c-97];
+		return res;
+	}
+	else if(c > 64 && c > 91){//big chars, print big chars
+		char *res = Characters[c-65];
+		return res;
+	}
+	else if(c==248 || c== 216){//ø
 		char* res = code_oe;
 		return res;
 	}
-	char* res = Characters[c-97];
-	return res;
-	//char *res=X;
-	//return res;
+	else if(c == 230 || c == 198){//æ
+		char* res = code_ae;
+		return res;
+	}
+	else if(c == 229 || c == 197){//å
+		char* res = code_aa;
+		return res;
+	}
+	else{
+		char *res = code_space;
+	}
 }
 
