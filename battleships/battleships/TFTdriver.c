@@ -77,7 +77,7 @@ void DisplayInit()
 	DDRA = 0xFF;
 	DDRB |= 0b00001111;
 	DDRG |= 0b00000111;
-	DDRD |= 0b10000000;
+	DDRD = ~(0b00000100); //Sets all others outputs, prev DDRD |= 0b10000000
 	DDRC = 0xFF; // Port C output
 	
 	//Touch Ports
