@@ -23,6 +23,7 @@
 #define F_CPU 16000000
 #include <util/delay.h>
 #include "TFTdriver.h"
+#include <string.h>
 
 // Data port definitions:
 #define DATA_PORT_HIGH PORTA
@@ -207,16 +208,55 @@ void delayNop(int times){
 	}
 }
 
-void writeSymbol(unsigned int data[], unsigned long int size){
-	unsigned char red=0b00000;
-	unsigned char green=0b000000;
-	unsigned char blue = 0b00000;
-		SetPageAddress(0,31);
-		SetColumnAddress(0,31);
+void writeSymbol(
+char *data, unsigned char red, unsigned char green, unsigned char blue, 
+unsigned int StartX, unsigned int StartY, unsigned int Width, unsigned int Height, 
+unsigned int sizeMultiplier
+){
+	SetPageAddress(StartX,(StartX + Width*sizeMultiplier)-1);
+	SetColumnAddress(StartY, (StartY + Height*sizeMultiplier)-1);
+	MemoryWrite();
 		
-	for(unsigned long int i=0;i<size;i++ ){
-		WritePixel(red, green,blue);
+	
+	for (int i = 0;i<16;i++){
+		char cfirst=*(data+(i*2));
+		char csecond=*(data+((i*2)+1));
+		for(int q=0;q<sizeMultiplier;q++){
+			for (int j=0;j<8;j++){
+				char off= cfirst<<j;
+				off&=0b10000000;
+				if(off == 0)
+				{
+					for(int size=0;size<sizeMultiplier;size++){
+						WritePixel(red, green, blue);
+					}
+				
+				} else {
+					for(int size=0;size<sizeMultiplier;size++){
+						WritePixel(0, 0, 0);
+					}
+				}
+			}
+			for (int p=0;p<8;p++){
+				char off= csecond<<p;
+				off&=0b10000000;
+				if(off == 0)
+				{
+					for(int size=0;size<sizeMultiplier;size++){
+						WritePixel(red, green, blue);
+					}
+								
+					} else {
+					for(int size=0;size<sizeMultiplier;size++){
+						WritePixel(0, 0, 0);
+					}
+				}
+			}
+		}		
 	}
+
+	WriteCommand(0);
+
 }
 
 void writeTouchData(unsigned int data){
