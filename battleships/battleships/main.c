@@ -16,7 +16,7 @@ int main(void)
 {	
 	DisplayInit();
 	//DrawBackground();
-	DrawText("nichlaes skylder øl", 0,0,1);
+	DrawText("øØæÅÆå123456789", 0,0,1);
 	DisplayOn();
 	// INT4:Falling edge
 	EICRB = 0b00000010;

@@ -343,7 +343,7 @@ char* getChar(char c)
 		char* res = Characters[c-97];
 		return res;
 	}
-	else if(c > 64 && c > 91){//big chars, print big chars
+	else if(c > 64 && c < 91){//big chars, print big chars
 		char *res = Characters[c-65];
 		return res;
 	}
