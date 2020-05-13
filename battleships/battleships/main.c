@@ -17,7 +17,8 @@ int main(void)
 	DisplayInit();
 	DrawBackground();
 	//DrawText("CC", 10,10,1);
-	DrawShip(3, 0,0);
+	DrawShip(4, 5,5);
+	//DrawShot(5,5);
 	DisplayOn();
 	// INT4:Falling edge
 	EICRB = 0b00000010;
@@ -26,7 +27,7 @@ int main(void)
 	sei(); // Global interrupt enable
     while (1) 
     {
-		//DisplayOn();
+		DisplayOn();
 		
     }
 }
@@ -36,8 +37,11 @@ int main(void)
 ISR (INT4_vect)
 {
 	EIMSK &= ~(0b00010000);
-	DisplayOff();
-	unsigned int data = readTouchInput();
+	//DisplayOff();
+	long x = GetXPosition();
+	DrawText('x',1,1,1);
+	long y = GetYPosition();
+
 	EIMSK |= 0b00010000;
 
 }

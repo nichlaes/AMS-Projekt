@@ -369,10 +369,7 @@ char* getChar(char c)
 	}
 	else{
 		char *res = code_space;
-	}
-	char *res = endShip;
-	return res;
-	
+	}	
 }
 
 char * getStartShip(){
