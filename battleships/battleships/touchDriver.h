@@ -11,9 +11,11 @@
 
 
 void TouchDriverInit();
-long GetXPosition();
-long GetYPosition();
-long GetDOUT();
+unsigned int GetXPosition();
+unsigned int GetYPosition();
+unsigned int GetDOUT();
+int GetMapYKoord(unsigned int yKoord);
+int GetMapXKoord(unsigned int xKoord);
 
 
 
