@@ -12,20 +12,19 @@
 #include "TFTdriver.h"
 #include "Draw.h"
 
+int i = 0;
+
 int main(void)
 {	
 	DisplayInit();
-	//DrawBackground();
-	DrawText("nichlaes skylder øl", 0,0,1);
-	DisplayOn();
-	// INT4:Falling edge
-	EICRB = 0b00000010;
-	// Enable extern interrupt INT4
-	EIMSK |= 0b00010000;
+	initIRQInterrupt();
 	sei(); // Global interrupt enable
+	//DrawBackground();
+
+	DisplayOn();
     while (1) 
     {
-		//DisplayOn();
+		DisplayOn();
 		
     }
 }
@@ -35,9 +34,17 @@ int main(void)
 ISR (INT4_vect)
 {
 	EIMSK &= ~(0b00010000);
-	DisplayOff();
-	unsigned int data = readTouchInput();
+	DrawText("t",(i++)*16,(i++)*16,1);
+	int dataX = readTouchXInput();
+	int dataY = readTouchYInput();
 	EIMSK |= 0b00010000;
 
 }
 
+
+void initIRQInterrupt(){
+	// INT4:Falling edge
+	EICRB = 0b00000010;
+	// Enable extern interrupt INT4
+	EIMSK |= 0b00010000;
+}
