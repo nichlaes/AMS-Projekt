@@ -8,10 +8,11 @@
 
 #ifndef DRAW_H_
 #define DRAW_H_
-void Draw();
+//void Draw();
 void DrawBackground();
-void DrawMissile();
-void DrawShip();
-void DrawText();
+//void DrawMissile();
+//void DrawShip();
+//void DrawText();
+void DrawX(char *text, unsigned int startx, unsigned int starty, unsigned int size);
 
 #endif /* DRAW_H_ */

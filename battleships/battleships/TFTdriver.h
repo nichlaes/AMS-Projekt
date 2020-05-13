@@ -32,7 +32,9 @@ void FillRectangle(unsigned int StartX, unsigned int StartY, unsigned int Width,
                    unsigned int Height, unsigned char Red, unsigned char Green, unsigned char Blue);
 unsigned int readTouchInput();
 void delayNop(int times);
-void writeSymbol(unsigned int data[], unsigned long int size);
+void writeSymbol(char *data, unsigned char red, unsigned char green, unsigned char blue,
+unsigned int StartX, unsigned int StartY, unsigned int Width, unsigned int Height,
+unsigned int sizeMultiplier);
 void writeTouchData(unsigned int);
 unsigned int readTouchData();
 void pulseCLK();

@@ -15,7 +15,8 @@
 int main(void)
 {	
 	DisplayInit();
-	DrawBackground();
+	//DrawBackground();
+	DrawText("nichlaes skylder øl", 0,0,1);
 	DisplayOn();
 	// INT4:Falling edge
 	EICRB = 0b00000010;
@@ -24,7 +25,8 @@ int main(void)
 	sei(); // Global interrupt enable
     while (1) 
     {
-		DisplayOn();
+		//DisplayOn();
+		
     }
 }
 

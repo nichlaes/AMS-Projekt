@@ -7,6 +7,7 @@
 
 #include "TFTdriver.h"
 #include "Draw.h"
+#include "fonts.h"
 
 #define tileWidth 64
 #define tileHeight 60
@@ -27,6 +28,17 @@ void DrawBackground(){
 	}
 }
 
-void drawExample(){
-	//WritePixel()
+
+void DrawText(char *text, unsigned int startx, unsigned int starty, unsigned int size){
+	for(int i=0; i<strlen(text); i++){
+		char *cx=getChar(*(text+i));
+		unsigned int start=startx+i*14*size;
+
+		writeSymbol(cx, 0b00001111, 0b00011111, 0b00001111, start, starty, 16, 16, size);
+	}
+	char *cx=getChar(*(text+0));
+
+	//char *cx=getChar(*(text+0));
+	//writeSymbol(cx, 0b00001111, 0b00011111, 0b00001111, startx, starty, 8, 8, 2);
+
 }
