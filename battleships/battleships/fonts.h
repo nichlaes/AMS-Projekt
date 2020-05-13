@@ -9,6 +9,9 @@
 #ifndef FONTS_H_
 #define FONTS_H_
 char *getChar(char c);
+char *getStartShip();
+char *getMiddleShip();
+char *getEndShip();
 
 
 

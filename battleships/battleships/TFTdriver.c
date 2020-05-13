@@ -228,7 +228,7 @@ unsigned int sizeMultiplier
 			for (int j=0;j<8;j++){
 				char off= cfirst<<j;
 				off&=0b10000000;
-				if(off == 0)
+				if(off != 0)
 				{
 					for(int size=0;size<sizeMultiplier;size++){
 						WritePixel(red, green, blue);
@@ -236,14 +236,14 @@ unsigned int sizeMultiplier
 				
 				} else {
 					for(int size=0;size<sizeMultiplier;size++){
-						WritePixel(0, 0, 0);
+						WritePixel(0b00001111, 0b00011111, 0b00001111);
 					}
 				}
 			}
 			for (int p=0;p<8;p++){
 				char off= csecond<<p;
 				off&=0b10000000;
-				if(off == 0)
+				if(off != 0)
 				{
 					for(int size=0;size<sizeMultiplier;size++){
 						WritePixel(red, green, blue);
@@ -251,7 +251,7 @@ unsigned int sizeMultiplier
 								
 					} else {
 					for(int size=0;size<sizeMultiplier;size++){
-						WritePixel(0, 0, 0);
+						WritePixel(0b00001111, 0b00011111, 0b00001111);
 					}
 				}
 			}

@@ -17,6 +17,7 @@
 void DrawBackground(){
 	int xTiles = displayWidth/tileWidth;
 	int yTiles = displayHeight/tileHeight;
+	ClearScreen();
 	
 	for (unsigned int i = 1; i < xTiles+1; i++)
 	{
@@ -28,17 +29,35 @@ void DrawBackground(){
 	}
 }
 
+void ClearScreen(){
+	FillRectangle(0,0,displayWidth, displayHeight, 0b00001111, 0b00011111, 0b00001111);
+}
 
 void DrawText(char *text, unsigned int startx, unsigned int starty, unsigned int size){
 	for(int i=0; i<strlen(text); i++){
 		char *cx=getChar(*(text+i));
 		unsigned int start=startx+i*14*size;
 
-		writeSymbol(cx, 0b00001111, 0b00011111, 0b00001111, start, starty, 16, 16, size);
+		writeSymbol(cx, 0,0,0, start, starty, 16, 16, size);
 	}
 	char *cx=getChar(*(text+0));
-
-	//char *cx=getChar(*(text+0));
-	//writeSymbol(cx, 0b00001111, 0b00011111, 0b00001111, startx, starty, 8, 8, 2);
-
 }
+
+void DrawShip(int size, unsigned int startx, unsigned int starty){
+	char *c=getStartShip();
+	writeSymbol(c, 0,0,0, (startx + (45-32)/2), (starty +((45-32)/2)), 16, 16, 2);
+	int i = 2;
+	for(;i<=size;i++){
+		char *c=getMiddleShip();
+		writeSymbol(c, 0,0,0, (startx + (tileWidth*(i-2)) + 32), (starty +((45-32)/2)), 16, 16, 2);
+		writeSymbol(c, 0,0,0, (startx + tileWidth*(i-1)), (starty +((45-32)/2)), 16, 16, 2);
+
+	}
+	char *cx=getEndShip();
+	writeSymbol(cx, 0,0,0, (startx + tileWidth*(i-2) + 20), (starty +((45-32)/2)), 16, 16, 2);
+}
+
+void DrawShot(unsigned int startx, unsigned int starty){
+	char *c = getChar('x');
+	writeSymbol(c, 0,0,0, startx+5, starty, 16,16,3);
+	}

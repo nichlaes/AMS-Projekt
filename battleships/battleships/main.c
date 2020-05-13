@@ -21,6 +21,10 @@ int main(void)
 	sei(); // Global interrupt enable
 	//DrawBackground();
 
+	DrawBackground();
+	//DrawText("CC", 10,10,1);
+	DrawShip(4, 5,5);
+	//DrawShot(5,5);
 	DisplayOn();
     while (1) 
     {
@@ -37,6 +41,11 @@ ISR (INT4_vect)
 	DrawText("t",(i++)*16,(i++)*16,1);
 	int dataX = readTouchXInput();
 	int dataY = readTouchYInput();
+	//DisplayOff();
+	long x = GetXPosition();
+	DrawText('x',1,1,1);
+	long y = GetYPosition();
+
 	EIMSK |= 0b00010000;
 
 }
