@@ -15,7 +15,7 @@ void ClearScreen();
 //void DrawShip();
 //void DrawText();
 void DrawText(char *text, unsigned int startx, unsigned int starty, unsigned int size);
-void DrawShip(int size, unsigned int startx, unsigned int starty);
+void DrawShip(int size, int startx, int starty);
 void DrawShot(unsigned int startx, unsigned int starty);
 
 #endif /* DRAW_H_ */
