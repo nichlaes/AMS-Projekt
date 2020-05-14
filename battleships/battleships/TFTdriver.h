@@ -36,7 +36,7 @@ void delayNop(int times);
 void writeSymbol(char *data, unsigned char red, unsigned char green, unsigned char blue,
 unsigned int StartX, unsigned int StartY, unsigned int Width, unsigned int Height,
 unsigned int sizeMultiplier);
-void writeTouchData(unsigned int);
+void writeTouchData(char);
 unsigned int readTouchData();
 void pulseCLK();
 

@@ -46,30 +46,32 @@ ISR (INT4_vect)
 {
 	EIMSK &= ~(0b00010000);
 	//DrawText("t",(i++)*16,(i++)*16,1);
-	int dataX = readTouchXInput();
-	int dataY = readTouchYInput();
+	//unsigned int dataX = readTouchXInput();
+	//unsigned int dataY = readTouchYInput();
+	//dataX = readTouchXInput();
+	//dataY = readTouchYInput();
 	//DisplayOff();
-	//_delay_ms(10);
+	_delay_ms(10);
 	unsigned int y = GetYPosition();
 	unsigned int x = GetXPosition();
 	y= GetYPosition();
-	//x = GetXPosition();
+	x = GetXPosition();
 	int xkoord = GetMapXKoord(x);
 	int ykoord  = GetMapYKoord(y);
 	if((xkoord == 0 || xkoord == 1 || xkoord == 2 || xkoord == 3)&&(ykoord == 0 || ykoord == 1 || ykoord == 2 || ykoord == 3 || ykoord == 4)){
 		DrawShip(2,ykoord, xkoord);
-		//int length = snprintf( NULL, 0, "%d", xkoord );
+		//int length = snprintf( NULL, 0, "%d", dataX );
 		//char* str = malloc( length + 1 );
-		//snprintf( str, length + 1, "%d", xkoord );
+		//snprintf( str, length + 1, "%d", dataX );
 		//DrawText(str,5,5,1);
 		//free(str);
 //
-		//int lengthy = snprintf( NULL, 0, "%d", ykoord );
+		//int lengthy = snprintf( NULL, 0, "%d", dataY );
 		//char* stry = malloc( lengthy + 1 );
-		//snprintf( stry, lengthy + 1, "%d", ykoord );
+		//snprintf( stry, lengthy + 1, "%d", dataY );
 		//DrawText(stry,30,30,1);
 		//free(stry);
-		}
+	}
 	EIMSK |= 0b00010000;
 
 }
