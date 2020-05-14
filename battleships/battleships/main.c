@@ -24,6 +24,7 @@ int main(void)
 
 	p1.name[0] = 'P';
 	p1.name[1] = '1';
+	p1.name[2] = '\0';
 	p1.smallShip[0].x = 2;
 	p1.smallShip[0].y = 1;
 	p1.mediumShip[0].x = 3;
@@ -36,14 +37,14 @@ int main(void)
 	p2.mediumShip[1].x = 3;
 	p2.mediumShip[1].y = 3;
 	
-	Shot = {3,3,0};
-	int hit = TakeShot(&p1, Shot, &p2);
-	//DisplayInit();
+	//Shot = {3,3,0};
+	//int hit = TakeShot(&p1, Shot, &p2);
+	DisplayInit();
 	initIRQInterrupt();
 	sei(); // Global interrupt enable
 	DrawBackground();
 	TouchDriverInit();
-
+	handleIdleState();
 	//DrawBackground();
 	//int c=1;
 	//int length = snprintf( NULL, 0, "%d", c );
@@ -61,6 +62,7 @@ int main(void)
 		EIMSK |= 0b00010000;
 		switch(GetGameState()){
 			case IdleState:
+				handleIdleState();
 				break;
 			case AttackState:
 				break;
@@ -126,4 +128,23 @@ void handleAttackState(){
 	if(GetCurrentPlayer() == 1){
 		shotHit = TakeShot(&p1, Shot, &p2);
 	} else shotHit = TakeShot(&p2, Shot, &p1);
+}
+
+void handleIdleState(){
+	//ClearScreen();
+	int playerId = GetCurrentPlayer();
+	Player *player;
+	ClearScreen();
+	if(playerId==1){
+		player=&p1;
+	}else{
+		player=&p2;
+	}
+	char name[16];
+	snprintf(name, sizeof name, "%s%s", player->name, "s turn");
+	//strcpy(name, player->name);
+	//strcpy(name, "s turn");
+	DrawText(name, 50,50, 2);
+	DrawText("tap to continue", 50, 150, 1);
+	
 }
