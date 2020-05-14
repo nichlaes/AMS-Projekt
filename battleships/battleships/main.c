@@ -35,15 +35,15 @@ int main(void)
 	p2.smallShip[0].y = 1;
 	p2.mediumShip[1].x = 3;
 	p2.mediumShip[1].y = 3;
-	
-	Shot = {3,3,0};
+	//handleGameOverState();
+	//Shot = {3,3,0};
 	int hit = TakeShot(&p1, Shot, &p2);
-	//DisplayInit();
-	initIRQInterrupt();
+	DisplayInit();
+	//initIRQInterrupt();
 	sei(); // Global interrupt enable
 	DrawBackground();
 	TouchDriverInit();
-
+	handleGameOverState();
 	//DrawBackground();
 	//int c=1;
 	//int length = snprintf( NULL, 0, "%d", c );
@@ -136,5 +136,22 @@ void handleGameOverState(){
 	}else{
 		player = &p2;
 	}
-	DrawText()
+	char name[16];
+	snprintf(name, sizeof name, "%s%s", "Winner ", player->name);
+	int length = snprintf( NULL, 0, "%d",  GetTurnNumber());
+	char* str = malloc( length + 1 );
+	snprintf( str, length + 1+11, "%s%d%s", "took ", GetTurnNumber(), " turns" );
+	DrawText(name, 25, 50, 2);
+	DrawText(str, 65, 120, 1);
+	int shipsLeft = player->shipsFieldsLeft;
+	int length1 = snprintf( NULL, 0, "%d",  shipsLeft);
+	char* str1 = malloc( length1 + 1 );
+	snprintf( str1, length1 + 1+14, "%d%s", shipsLeft, " nonhit fields" );
+	
+
+	DrawText(str1, 65, 180, 1);
+	
+	free(str);
+	free(str1);
+	
 }

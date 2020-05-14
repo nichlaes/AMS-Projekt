@@ -15,7 +15,7 @@ static enum State gameState = IdleState;
 static unsigned int turnNumber = 1;
 
 int GetGameState(){
-	return gameState
+	return gameState;
 } 
 
 void NextState(){
@@ -34,6 +34,9 @@ int GetCurrentPlayer(){
 	if(p == 0)
 		p = 2;
 	return p;
+}
+int GetTurnNumber(){
+	return turnNumber;
 }
 
 int TakeShot(Player *player, Point shot, Player *opponent){
