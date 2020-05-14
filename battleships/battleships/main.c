@@ -66,7 +66,6 @@ int main(void)
 	//
 	//DrawText(str, 10,10,1);
 	//DrawShip(4, 5,5);
-	//DrawShot(5,5);
 	DisplayOn();
 	handleAttackState();
     while (1) 
