@@ -5,6 +5,7 @@
  *  Author: Nichl
  */ 
 
+#include "Game.h"
 
 #ifndef DRAW_H_
 #define DRAW_H_
@@ -15,6 +16,7 @@ void ClearScreen();
 void DrawText();
 void DrawText(char *text, unsigned int startx, unsigned int starty, unsigned int size);
 void DrawShip(int size, int startx, int starty);
-void DrawShot(unsigned int startx, unsigned int starty);
+void DrawShot(Point shot);
+void DrawPlayer(Player *player);
 
 #endif /* DRAW_H_ */

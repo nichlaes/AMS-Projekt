@@ -19,16 +19,25 @@ Player p1;
 Player p2;
 Point Shot;
 
+int isStateHandled = 1;
+
 int main(void)
 {	
 
 	p1.name[0] = 'P';
 	p1.name[1] = '1';
 	p1.name[2] = '\0';
-	p1.smallShip[0].x = 2;
-	p1.smallShip[0].y = 1;
-	p1.mediumShip[0].x = 3;
-	p1.mediumShip[0].y = 3;
+	p1.smallShip[0].x = 0;
+	p1.smallShip[0].y = 0;
+	p1.mediumShip[0].x = 0;
+	p1.mediumShip[0].y = 1;
+	p1.BigShip[0].x = 0;
+	p1.BigShip[0].y = 2;
+	Point shot1 = {1,1,1};
+	p1.Shots[0] = shot1;
+	Point shot2 = {3,1,0};
+	p1.Shots[1] = shot2;
+	p1.shotsFired = 2;
 	
 	p2.name[0] = 'P';
 	p2.name[1] = '2';
@@ -37,22 +46,17 @@ int main(void)
 	p2.mediumShip[1].x = 3;
 	p2.mediumShip[1].y = 3;
 	
-	//Shot = {3,3,0};
-	//int hit = TakeShot(&p1, Shot, &p2);
+	
 	DisplayInit();
 	//initIRQInterrupt();
 	sei(); // Global interrupt enable
-	DrawBackground();
 	TouchDriverInit();
 	//handleGameOverState();
 	//Shot = {3,3,0};
 	int hit = TakeShot(&p1, Shot, &p2);
 	//initIRQInterrupt();
 	sei(); // Global interrupt enable
-	DrawShot(0,0);
-	DrawShot(2,1);
-	DrawShot(4,3);
-	DrawShot(1,3);
+
 	TouchDriverInit();
 	//DrawBackground();
 	//int c=1;
@@ -64,27 +68,30 @@ int main(void)
 	//DrawShip(4, 5,5);
 	//DrawShot(5,5);
 	DisplayOn();
+	handleAttackState();
     while (1) 
     {
-		//DisplayOn();
-		//_delay_ms(1000);
-		//EIMSK |= 0b00010000;
-		//switch(GetGameState()){
-			//case IdleState:
-				//handleIdleState();
-				//break;
-			//case AttackState:
-				//break;
-			//case EndState:
-				//if(p1.shipsFieldsLeft == 0 || p1.shipsFieldsLeft == 0){
-					//EndGame();
-				//} else NextState();
-				//break;
-			//case GameOverState:
-				//break;
-			//default:
-				//break;
-		
+		if(isStateHandled == 0)
+		{
+			switch(GetGameState()){
+				case IdleState:
+				handleIdleState();
+				break;
+				case AttackState:
+				handleAttackState();
+				break;
+				case EndState:
+				handleEndState();
+				break;
+				case GameOverState:
+				//handleGameOverState();
+				break;
+				default:
+				break;
+			}
+			isStateHandled = 1;
+			EIMSK |= 0b00010000;	
+		}
     }
 }
 
@@ -120,7 +127,8 @@ ISR (INT4_vect)
 		//DrawText(stry,30,30,1);
 		//free(stry);
 	}
-	EIMSK |= 0b00010000;
+	isStateHandled = 0;
+	//EIMSK |= 0b00010000;
 
 }
 
@@ -133,10 +141,27 @@ void initIRQInterrupt(){
 }
 
 void handleAttackState(){
+	
+	DrawBackground();
+	if(GetCurrentPlayer() == 1){
+		DrawPlayer(&p1);
+	} else DrawPlayer(&p2);
+	NextState();
+}
+
+void handleEndState(){
+	
 	int shotHit;
 	if(GetCurrentPlayer() == 1){
 		shotHit = TakeShot(&p1, Shot, &p2);
 	} else shotHit = TakeShot(&p2, Shot, &p1);
+	
+	//If shot is 
+	if (shotHit != -1){
+		if(p1.shipsFieldsLeft == 0 || p1.shipsFieldsLeft == 0){
+			EndGame();
+		} else NextState();	
+	}
 }
 
 void handleIdleState(){

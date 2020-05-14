@@ -9,6 +9,10 @@
 #ifndef GAME_H_
 #define GAME_H_
 
+#define SMALLSHIPSIZE 1
+#define MEDIUMSHIPSIZE 2
+#define BIGSHIPSIZE 3
+
 enum State {IdleState, AttackState, EndState, GameOverState}; 
 
 typedef struct Point
