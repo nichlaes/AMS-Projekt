@@ -61,7 +61,21 @@ void DrawShip(int size, int startx, int starty){
 	writeSymbol(cx, 0,0,0, (startx + tileWidth*(i-2) + 20), (starty +((45-32)/2)), 16, 16, 2);
 }
 
-void DrawShot(unsigned int startx, unsigned int starty){
+void DrawShot(Point shot){
 	char *c = getChar('x');
-	writeSymbol(c, 0,0,0, startx+5, starty, 16,16,3);
+	if (shot.hit){
+		writeSymbol(c, 31,0,0, shot.x+5, shot.y, 16,16,3);
+	}else writeSymbol(c, 0,0,0, shot.x+5, shot.y, 16,16,3);
+}
+
+void DrawPlayer(Player *player){
+	DrawShip(SMALLSHIPSIZE, player->smallShip[0].x, player->smallShip[0].y);
+	DrawShip(MEDIUMSHIPSIZE, player->mediumShip[0].x, player->mediumShip[0].y);
+	DrawShip(BIGSHIPSIZE, player->BigShip[0].x, player->BigShip[0].y);
+	
+	for (int i = 0; i<player->shotsFired; i++)
+	{
+		DrawShot(player->Shots[i]);
 	}
+		
+}

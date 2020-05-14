@@ -7,15 +7,11 @@
 
 #include "Game.h"
 
-#define SMALLSHIPSIZE 1
-#define MEDIUMSHIPSIZE 2
-#define BIGSHIPSIZE 3
-
 static enum State gameState = IdleState;
 static unsigned int turnNumber = 1;
 
 int GetGameState(){
-	return gameState
+	return gameState;
 } 
 
 void NextState(){
