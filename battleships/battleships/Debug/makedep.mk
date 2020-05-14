@@ -6,6 +6,8 @@ Draw.c
 
 fonts.c
 
+Game.c
+
 main.c
 
 TFTdriver.c
