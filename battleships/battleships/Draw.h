@@ -13,8 +13,7 @@
 void DrawBackground();
 void ClearScreen();
 //void DrawMissile();
-//void DrawShip();
-//void DrawText();
+void DrawText();
 void DrawText(char *text, unsigned int startx, unsigned int starty, unsigned int size);
 void DrawShip(int size, int startx, int starty);
 void DrawShot(Point shot);
