@@ -127,3 +127,14 @@ void handleAttackState(){
 		shotHit = TakeShot(&p1, Shot, &p2);
 	} else shotHit = TakeShot(&p2, Shot, &p1);
 }
+void handleGameOverState(){
+	Player *player;
+	ClearScreen();
+	int playerId = GetCurrentPlayer();
+	if(playerId==1){
+		player = &p1;
+	}else{
+		player = &p2;
+	}
+	DrawText()
+}
