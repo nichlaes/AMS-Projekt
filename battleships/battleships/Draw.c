@@ -8,6 +8,7 @@
 #include "TFTdriver.h"
 #include "Draw.h"
 #include "fonts.h"
+#include <string.h>
 
 #define tileWidth 64
 #define tileHeight 60

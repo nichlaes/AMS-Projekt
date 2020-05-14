@@ -9,27 +9,58 @@
 #include <avr/interrupt.h>
 #define F_CPU 16000000
 #include <util/delay.h>
+#include <stdio.h>
 #include "TFTdriver.h"
 #include "Draw.h"
+#include "Game.h"
 
-int i = 0;
+Player p1;
+Player p2;
+Point Shot;
 
 int main(void)
 {	
-	DisplayInit();
+
+	p1.name[0] = 'P';
+	p1.name[1] = '1';
+	p1.smallShip[0].x = 2;
+	p1.smallShip[0].y = 1;
+	p1.mediumShip[0].x = 3;
+	p1.mediumShip[0].y = 3;
+	
+	p2.name[0] = 'P';
+	p2.name[1] = '2';
+	p2.smallShip[0].x = 2;
+	p2.smallShip[0].y = 1;
+	p2.mediumShip[1].x = 3;
+	p2.mediumShip[1].y = 3;
+	
+	Shot = {3,3,0};
+	int hit = TakeShot(&p1, Shot, &p2);
+	//DisplayInit();
 	initIRQInterrupt();
 	sei(); // Global interrupt enable
-	//DrawBackground();
-
-	DrawBackground();
-	//DrawText("CC", 10,10,1);
-	DrawShip(4, 5,5);
-	//DrawShot(5,5);
-	DisplayOn();
+	//DisplayOn();
     while (1) 
     {
-		DisplayOn();
-		
+		//DisplayOn();
+		//_delay_ms(1000);
+		EIMSK |= 0b00010000;
+		switch(GetGameState()){
+			case IdleState:
+				break;
+			case AttackState:
+				break;
+			case EndState:
+				if(p1.shipsFieldsLeft == 0 || p1.shipsFieldsLeft == 0){
+					EndGame();
+				} else NextState();
+				break;
+			case GameOverState:
+				break;
+			default:
+				break;
+		}
     }
 }
 
@@ -38,22 +69,23 @@ int main(void)
 ISR (INT4_vect)
 {
 	EIMSK &= ~(0b00010000);
-	DrawText("t",(i++)*16,(i++)*16,1);
-	int dataX = readTouchXInput();
-	int dataY = readTouchYInput();
-	//DisplayOff();
-	long x = GetXPosition();
-	DrawText('x',1,1,1);
-	long y = GetYPosition();
-
-	EIMSK |= 0b00010000;
-
+	//long x = GetXPosition();
+	//DrawText(x,5,5,1);
+	//long y = GetYPosition();
+	//DrawText(y,20,20,1);
 }
 
 
 void initIRQInterrupt(){
 	// INT4:Falling edge
-	EICRB = 0b00000010;
+	EICRB = 0b00000000;
 	// Enable extern interrupt INT4
 	EIMSK |= 0b00010000;
+}
+
+void handleAttackState(){
+	int shotHit;
+	if(GetCurrentPlayer() == 1){
+		shotHit = TakeShot(&p1, Shot, &p2);
+	} else shotHit = TakeShot(&p2, Shot, &p1);
 }
