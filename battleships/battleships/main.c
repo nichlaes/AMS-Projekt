@@ -40,17 +40,19 @@ int main(void)
 	//Shot = {3,3,0};
 	//int hit = TakeShot(&p1, Shot, &p2);
 	DisplayInit();
-	initIRQInterrupt();
+	//initIRQInterrupt();
 	sei(); // Global interrupt enable
 	DrawBackground();
 	TouchDriverInit();
 	//handleGameOverState();
 	//Shot = {3,3,0};
 	int hit = TakeShot(&p1, Shot, &p2);
-	DisplayInit();
 	//initIRQInterrupt();
 	sei(); // Global interrupt enable
-	DrawBackground();
+	DrawShot(0,0);
+	DrawShot(2,1);
+	DrawShot(4,3);
+	DrawShot(1,3);
 	TouchDriverInit();
 	//DrawBackground();
 	//int c=1;
@@ -66,23 +68,23 @@ int main(void)
     {
 		//DisplayOn();
 		//_delay_ms(1000);
-		EIMSK |= 0b00010000;
-		switch(GetGameState()){
-			case IdleState:
-				handleIdleState();
-				break;
-			case AttackState:
-				break;
-			case EndState:
-				if(p1.shipsFieldsLeft == 0 || p1.shipsFieldsLeft == 0){
-					EndGame();
-				} else NextState();
-				break;
-			case GameOverState:
-				break;
-			default:
-				break;
-		}
+		//EIMSK |= 0b00010000;
+		//switch(GetGameState()){
+			//case IdleState:
+				//handleIdleState();
+				//break;
+			//case AttackState:
+				//break;
+			//case EndState:
+				//if(p1.shipsFieldsLeft == 0 || p1.shipsFieldsLeft == 0){
+					//EndGame();
+				//} else NextState();
+				//break;
+			//case GameOverState:
+				//break;
+			//default:
+				//break;
+		
     }
 }
 

@@ -61,7 +61,16 @@ void DrawShip(int size, int startx, int starty){
 	writeSymbol(cx, 0,0,0, (startx + tileWidth*(i-2) + 20), (starty +((45-32)/2)), 16, 16, 2);
 }
 
-void DrawShot(unsigned int startx, unsigned int starty){
+void DrawHit(unsigned int startx, unsigned int starty){
 	char *c = getChar('x');
 	writeSymbol(c, 0,0,0, startx+5, starty, 16,16,3);
-	}
+}
+	
+void DrawShot(unsigned int startx, unsigned int starty){
+	startx = startx*tileWidth;
+	starty = starty*tileHeight+2;
+	if(startx == 0){startx+=2;}
+	startx+=5;
+	char *c = getChar('o');
+	writeSymbol(c, 0,0,0, startx, starty, 16,16,3);
+}
