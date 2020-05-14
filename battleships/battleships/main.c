@@ -53,7 +53,6 @@ int main(void)
 	TouchDriverInit();
 	//handleGameOverState();
 	//Shot = {3,3,0};
-	int hit = TakeShot(&p1, Shot, &p2);
 	DisplayInit();
 	//initIRQInterrupt();
 	sei(); // Global interrupt enable
