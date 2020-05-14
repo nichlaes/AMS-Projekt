@@ -35,6 +35,9 @@ int GetCurrentPlayer(){
 		p = 2;
 	return p;
 }
+int GetTurnNumber(){
+	return turnNumber;
+}
 
 int TakeShot(Player *player, Point shot, Player *opponent){
 	
