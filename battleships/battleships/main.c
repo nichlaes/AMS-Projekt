@@ -48,7 +48,7 @@ int main(void)
 	
 	
 	DisplayInit();
-	initIRQInterrupt();
+	//initIRQInterrupt();
 	sei(); // Global interrupt enable
 	TouchDriverInit();
 	//handleGameOverState();
@@ -56,7 +56,7 @@ int main(void)
 	DisplayInit();
 	//initIRQInterrupt();
 	sei(); // Global interrupt enable
-	DrawBackground();
+
 	TouchDriverInit();
 	//DrawBackground();
 	//int c=1;
@@ -66,7 +66,6 @@ int main(void)
 	//
 	//DrawText(str, 10,10,1);
 	//DrawShip(4, 5,5);
-	//DrawShot(5,5);
 	DisplayOn();
 	handleAttackState();
     while (1) 
@@ -84,7 +83,7 @@ int main(void)
 				handleEndState();
 				break;
 				case GameOverState:
-				handleGameOverState();
+				//handleGameOverState();
 				break;
 				default:
 				break;
