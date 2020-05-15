@@ -74,9 +74,11 @@ ISR (INT4_vect)
 	EIMSK &= ~(0b00010000);
 	unsigned int y = readTouchYInput();
 	unsigned int x = readTouchXInput();
+	//x = readTouchXInput();
+	//y = readTouchYInput();
 
-	Shot.y = GetMapXKoord(x); // opposite
-	Shot.x = GetMapYKoord(y); // opposite
+	Shot.y = GetMapXKoord(y); // opposite
+	Shot.x = GetMapYKoord(x); // opposite
 	
 	switch(GetGameState()){
 		case IdleState:

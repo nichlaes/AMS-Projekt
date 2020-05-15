@@ -275,26 +275,31 @@ void writeTouchData(char data){
 			DIN_PORT&=~(1<<DIN_BIT);
 		}
 		CLK_PORT |= 1<<CLK_BIT; //Sets CLK high
-		delayNop(6); //min 200ns
+		delayNop(4); //min 200ns
 		CLK_PORT &= ~(1<<CLK_BIT); //Sets CLK low
-		delayNop(6); //min 200ns
 	}
 }
 
 unsigned int readTouchData(){
+	unsigned int temp = 0;
 	unsigned int data = 0;
-	for (int i=0;i<12;i++){
-		data = data<<1;
+	for (int i=11;i<-1;i--){
+		//data = data<<1;
 
 		CLK_PORT |= (1<<CLK_BIT); //Sets CLK high 
 		delayNop(2); // minimum 200ns
-		data |=  (0b00000001 & (DOUT_PORT>>DOUT_BIT));
+		
+		//if(0b00000001<<DOUT_BIT & DOUT_PORT){
+			//data++;
+		//}
+		temp = DOUT_PORT>>DOUT_BIT &0b00000001;
+		data |= temp<<i;
 		_NOP();
 		CLK_PORT |= (1<<CLK_BIT); //Sets CLK low
 
 		delayNop(4); //(minimum 200ns)
 	}
-	CS_TOUCH_PORT &= (~1<<CS_TOUCH_BIT);
+	//CS_TOUCH_PORT &= (~1<<CS_TOUCH_BIT);
 	return data;
 }
 
@@ -303,15 +308,15 @@ unsigned int readTouchXInput()
 	//unsigned int getXData = 0x90;
 	writeTouchData(0x90);
 	_delay_ms(2); //Busy wait
-	return readTouchData();
+	return GetDOUT();
 }
 
 unsigned int readTouchYInput()
 {
 	//unsigned int getYData = 0xD0;
 	writeTouchData(0xD0);
-	delayNop(8);
-	return readTouchData();
+	_delay_ms(2); //Busy wait
+	return GetDOUT();
 }
 
 void pulseCLK(){
