@@ -12,5 +12,5 @@ main.c
 
 TFTdriver.c
 
-touchDriver.c
+TouchHelper.c
 

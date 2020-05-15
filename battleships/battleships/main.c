@@ -14,6 +14,7 @@
 #include "Draw.h"
 #include <stddef.h>
 #include "Game.h"
+#include "TouchHelper.h"
 
 Player p1;
 Player p2;
@@ -50,7 +51,6 @@ int main(void)
 	p2.shipsFieldsLeft = 1;
 	
 	DisplayInit();
-	TouchDriverInit();
 	initIRQInterrupt();
 	sei(); // Global interrupt enable
 	//DrawBackground();
@@ -72,12 +72,10 @@ int main(void)
 ISR (INT4_vect)
 {
 	EIMSK &= ~(0b00010000);
-	unsigned int y = GetYPosition();
-	unsigned int x = GetXPosition();
-	y= GetYPosition();
-	x = GetXPosition();
-	Shot.y = GetMapXKoord(x); // opposite
-	Shot.x = GetMapYKoord(y); // opposite
+	unsigned int x = readTouchXInput();
+	unsigned int y = readTouchYInput();
+	Shot.x = GetMapXKoord(x); 
+	Shot.y = GetMapYKoord(y); 
 	
 	switch(GetGameState()){
 		case IdleState:
@@ -95,7 +93,7 @@ ISR (INT4_vect)
 		default:
 		break;
 	}
-	_delay_ms(500);
+	_delay_ms(200);
 	EIMSK |= 0b00010000;
 }
 

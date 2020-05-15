@@ -42,7 +42,7 @@ C_SRCS +=  \
 ../Game.c \
 ../main.c \
 ../TFTdriver.c \
-../touchDriver.c
+../TouchHelper.c
 
 
 PREPROCESSING_SRCS += 
@@ -57,7 +57,7 @@ fonts.o \
 Game.o \
 main.o \
 TFTdriver.o \
-touchDriver.o
+TouchHelper.o
 
 OBJS_AS_ARGS +=  \
 Draw.o \
@@ -65,7 +65,7 @@ fonts.o \
 Game.o \
 main.o \
 TFTdriver.o \
-touchDriver.o
+TouchHelper.o
 
 C_DEPS +=  \
 Draw.d \
@@ -73,7 +73,7 @@ fonts.d \
 Game.d \
 main.d \
 TFTdriver.d \
-touchDriver.d
+TouchHelper.d
 
 C_DEPS_AS_ARGS +=  \
 Draw.d \
@@ -81,7 +81,7 @@ fonts.d \
 Game.d \
 main.d \
 TFTdriver.d \
-touchDriver.d
+TouchHelper.d
 
 OUTPUT_FILE_PATH +=battleships.elf
 
@@ -132,7 +132,7 @@ LINKER_SCRIPT_DEP+=
 	@echo Finished building: $<
 	
 
-./touchDriver.o: .././touchDriver.c
+./TouchHelper.o: .././TouchHelper.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega2560" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
