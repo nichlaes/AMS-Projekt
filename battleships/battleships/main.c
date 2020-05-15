@@ -52,18 +52,9 @@ int main(void)
 	DisplayInit();
 	initIRQInterrupt();
 	sei(); // Global interrupt enable
-	DrawBackground();
-	//int c=1;
-	//int length = snprintf( NULL, 0, "%d", c );
-	//char* str = malloc( length + 1 );
-	//snprintf( str, length + 1, "%d", c );
-	//
-	//DrawText(str, 10,10,1);
-	//DrawShip(4, 5,5);
 	DisplayOn();
     while (1) 
     {
-		//handleSetShipState(1,1);
     }
 }
 

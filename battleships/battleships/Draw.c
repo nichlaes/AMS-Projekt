@@ -62,8 +62,8 @@ void DrawShip(int size, int startx, int starty){
 }
 
 void DrawHit(Point shot){
-	unsigned int startx = shot.x*tileWidth;
-	unsigned int starty = shot.y*tileHeight+2;
+	unsigned int startx = (shot.x-1)*tileWidth;
+	unsigned int starty = (shot.y-1)*tileHeight+2;
 	if(startx == 0){startx+=2;}
 	startx+=5+(32/2);
 	starty+=(32/2);
@@ -72,8 +72,8 @@ void DrawHit(Point shot){
 }
 	
 void DrawShot(Point shot){
-	unsigned int startx = shot.x*tileWidth;
-	unsigned int starty = shot.y*tileHeight+2;
+	unsigned int startx = (shot.x-1)*tileWidth;
+	unsigned int starty = (shot.y-1)*tileHeight+2;
 	if(startx == 0){startx+=2;}
 	startx+=5;
 	char *c = getChar('o');
