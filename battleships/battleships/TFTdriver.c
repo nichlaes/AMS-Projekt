@@ -305,9 +305,3 @@ unsigned int readTouchYInput()
 	delayNop(8); //Busy wait
 	return readTouchData();
 }
-
-void pulseCLK(){
-	CLK_PORT &= 1<<CLK_BIT; //Sets CLK high
-	delayNop(1);
-	CLK_PORT &= ~(1<<CLK_BIT); //Sets CLK low
-}

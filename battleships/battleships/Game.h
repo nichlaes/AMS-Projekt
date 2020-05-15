@@ -13,7 +13,7 @@
 #define MEDIUMSHIPSIZE 2
 #define BIGSHIPSIZE 3
 
-enum State {IdleState, AttackState, EndState, GameOverState}; 
+enum State {PreGameState, IdleState, AttackState, EndState, GameOverState}; 
 
 typedef struct Point
 {
@@ -26,7 +26,7 @@ typedef struct Player
 	Point smallShip[1];
 	Point mediumShip[2];
 	Point BigShip[3];
-	Point Shots[10];
+	Point Shots[20];
 	unsigned int shotsFired;
 	unsigned int shipsFieldsLeft;
 } Player ;
