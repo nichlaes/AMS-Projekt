@@ -53,6 +53,9 @@ int main(void)
 	initIRQInterrupt();
 	sei(); // Global interrupt enable
 	DisplayOn();
+	DrawText("battle", 50,50, 2);
+	DrawText("ships", 50,100, 2);
+	DrawText("tap to begin", 50, 150, 1);
     while (1) 
     {
     }
