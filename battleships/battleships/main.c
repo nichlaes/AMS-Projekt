@@ -62,7 +62,6 @@ int main(void)
 // Interrupt service rutine for INT2
 ISR (INT4_vect)
 {
-	//DrawShip(1,1,1);
 	EIMSK &= ~(0b00010000);
 	unsigned int x = readTouchXInput();
 	unsigned int y = readTouchYInput();
@@ -114,9 +113,9 @@ void handlePreGameState(){
 	if (p1.BigShip[0].x == 0){
 		currentPlayer = &p1;
 	} else currentPlayer = &p2;
-	DrawText(currentPlayer->name, 135,20, 2);
+	DrawText(currentPlayer->name, 135,50, 2);
 	DrawText("please place", 80, 100, 1);
-	DrawText("your battleships", 90, 150, 1);
+	DrawText("your battleships", 50, 150, 1);
 	NextState();
 }
 
@@ -145,7 +144,6 @@ void handleSetShipState(int x, int y){
 			PreviousState();
 		}
 	}
-
 }
 
 void handleAttackState(){
@@ -217,4 +215,6 @@ void handleGameOverState(){
 	free(str1);
 	NewGame(&p1, &p2);	
 }
+
+
 
