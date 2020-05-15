@@ -127,14 +127,13 @@ void handleEndState(){
 	if (shotHit != -1){
 		Shot.hit = shotHit;
 		DrawShot(Shot);
-		if(p1.shipsFieldsLeft == 0 || p1.shipsFieldsLeft == 0){
+		if(p1.shipsFieldsLeft == 0 || p2.shipsFieldsLeft == 0){
 			EndGame();
 		} else NextState();	
 	}
 }
 
 void handleIdleState(){
-	//ClearScreen();
 	int playerId = GetCurrentPlayer();
 	Player *player;
 	ClearScreen();
@@ -145,8 +144,6 @@ void handleIdleState(){
 	}
 	char name[16];
 	snprintf(name, sizeof name, "%s%s", player->name, "s turn");
-	//strcpy(name, player->name);
-	//strcpy(name, "s turn");
 	DrawText(name, 50,50, 2);
 	DrawText("tap to continue", 50, 150, 1);
 	NextState();
