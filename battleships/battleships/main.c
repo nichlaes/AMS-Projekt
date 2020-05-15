@@ -78,20 +78,23 @@ ISR (INT4_vect)
 	Shot.y = GetMapYKoord(y); 
 	
 	switch(GetGameState()){
+		case SetShipState:
+			handleIdleState();
+			break;
 		case IdleState:
-		handleIdleState();
-		break;
+			handleIdleState();
+			break;
 		case AttackState:
-		handleAttackState();
-		break;
+			handleAttackState();
+			break;
 		case EndState:
-		handleEndState();
-		break;
+			handleEndState();
+			break;
 		case GameOverState:
-		handleGameOverState();
-		break;
+			handleGameOverState();
+			break;
 		default:
-		break;
+			break;
 	}
 	_delay_ms(200);
 	EIMSK |= 0b00010000;
@@ -103,6 +106,9 @@ void initIRQInterrupt(){
 	EICRB = 0b00000000;
 	// Enable extern interrupt INT4
 	EIMSK |= 0b00010000;
+}
+void handleSetShipState(){
+	
 }
 
 void handleAttackState(){
