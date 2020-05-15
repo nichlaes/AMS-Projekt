@@ -65,7 +65,8 @@ void DrawHit(Point shot){
 	unsigned int startx = shot.x*tileWidth;
 	unsigned int starty = shot.y*tileHeight+2;
 	if(startx == 0){startx+=2;}
-	startx+=5;
+	startx+=5+(32/2);
+	starty+=(32/2);
 	char *c = getChar('x');
 	writeSymbol(c, 0,0,0, startx, starty, 16,16,3);
 }
