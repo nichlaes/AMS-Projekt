@@ -37,4 +37,5 @@ void NextState();
 void EndGame();
 int GetCurrentPlayer();
 int GetTurnNumber();
+void NewGame(Player *p1, Player *p2);
 #endif /* GAME_H_ */

@@ -29,8 +29,14 @@ int main(void)
 	p1.smallShip[0].y = 0;
 	p1.mediumShip[0].x = 0;
 	p1.mediumShip[0].y = 1;
+	p1.mediumShip[1].x = 1;
+	p1.mediumShip[1].y = 1;
 	p1.BigShip[0].x = 0;
 	p1.BigShip[0].y = 2;
+	p1.BigShip[1].x = 1;
+	p1.BigShip[1].y = 2;
+	p1.BigShip[2].x = 2;
+	p1.BigShip[2].y = 2;
 	p1.shipsFieldsLeft = 1;
 	
 	p2.name[0] = 'P';
@@ -119,6 +125,7 @@ void handleEndState(){
 	
 	//If shot is valid
 	if (shotHit != -1){
+		Shot.hit = shotHit;
 		DrawShot(Shot);
 		if(p1.shipsFieldsLeft == 0 || p1.shipsFieldsLeft == 0){
 			EndGame();
@@ -171,6 +178,6 @@ void handleGameOverState(){
 	
 	free(str);
 	free(str1);
-	
+	NewGame(&p1, &p2);	
 }
 
