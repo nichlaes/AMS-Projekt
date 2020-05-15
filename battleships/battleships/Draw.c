@@ -68,7 +68,7 @@ void DrawHit(Point shot){
 	startx+=5+(32/2);
 	starty+=(32/2);
 	char *c = getChar('x');
-	writeSymbol(c, 0,0,0, startx, starty, 16,16,3);
+	writeSymbol(c, 0,0,0, startx, starty, 16,16,1);
 }
 	
 void DrawShot(Point shot){
@@ -93,6 +93,25 @@ void DrawPlayer(Player *player){
 	for (int i = 0; i<player->shotsFired; i++)
 	{
 		DrawShot(player->Shots[i]);
+	}
+	
+	for (int i = 0; i<BIGSHIPSIZE; i++)
+	{
+		if(i < SMALLSHIPSIZE){
+			if (player->smallShip[i].hit == 1){
+				DrawHit(player->smallShip[i]);
+			}
+		}
+		if(i < MEDIUMSHIPSIZE){
+			if (player->mediumShip[i].hit == 1){
+				DrawHit(player->mediumShip[i]);
+			}
+		}
+		if(i < BIGSHIPSIZE){
+			if (player->BigShip[i].hit == 1){
+				DrawHit(player->BigShip[i]);
+			}
+		}
 	}
 		
 }

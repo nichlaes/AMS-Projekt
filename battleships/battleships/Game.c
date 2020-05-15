@@ -21,6 +21,47 @@ void NextState(){
 	} else gameState++;
 }
 
+void NewGame(Player *p1, Player *p2){
+	gameState = IdleState;
+	turnNumber = 1;
+	
+	for (int i = 0; i<p1->shotsFired; i++)
+	{
+		p1->Shots[i].hit = 0;
+		p1->Shots[i].x = 0;
+		p1->Shots[i].y = 0; 
+	}
+	
+	for (int i = 0; i<p2->shotsFired; i++)
+	{
+		p2->Shots[i].hit = 0;
+		p2->Shots[i].x = 0;
+		p2->Shots[i].y = 0;
+	}
+	
+	p1->shotsFired=0;
+	p2->shotsFired=0;
+	
+	p1->shipsFieldsLeft = SMALLSHIPSIZE + MEDIUMSHIPSIZE + BIGSHIPSIZE;
+	p2->shipsFieldsLeft = SMALLSHIPSIZE + MEDIUMSHIPSIZE + BIGSHIPSIZE;
+		
+	for (int i = 0; i<BIGSHIPSIZE; i++)
+	{
+		if(i < SMALLSHIPSIZE){
+			p1->smallShip[i].hit = 0;
+			p2->smallShip[i].hit = 0;
+		}
+		if(i < MEDIUMSHIPSIZE){
+			p1->mediumShip[i].hit = 0;
+			p2->mediumShip[i].hit = 0;
+		}
+		if(i < BIGSHIPSIZE){
+			p1->BigShip[i].hit = 0;
+			p2->BigShip[i].hit = 0;
+		}
+	}
+}
+
 void EndGame(){
 	gameState = GameOverState;
 }
