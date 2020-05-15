@@ -13,7 +13,7 @@
 #define MEDIUMSHIPSIZE 2
 #define BIGSHIPSIZE 3
 
-enum State {IdleState, AttackState, EndState, GameOverState}; 
+enum State {SetShipState, IdleState, AttackState, EndState, GameOverState}; 
 
 typedef struct Point
 {
