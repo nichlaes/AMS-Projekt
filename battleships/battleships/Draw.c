@@ -68,7 +68,7 @@ void DrawHit(Point shot){
 	startx+=5+(32/2);
 	starty+=(32/2);
 	char *c = getChar('x');
-	writeSymbol(c, 0,0,0, startx, starty, 16,16,3);
+	writeSymbol(c, 0,0,0, startx, starty, 16,16,1);
 }
 	
 void DrawShot(Point shot){
