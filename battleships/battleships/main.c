@@ -22,38 +22,37 @@ Point Shot;
 
 int main(void)
 {	
-
 	p1.name[0] = 'P';
 	p1.name[1] = '1';
 	p1.name[2] = '\0';
-	p1.smallShip[0].x = 0; //Remember to set the hole ship!!!!!
-	p1.smallShip[0].y = 0;
-	p1.mediumShip[0].x = 0;
-	p1.mediumShip[0].y = 1;
-	p1.mediumShip[1].x = 1;
-	p1.mediumShip[1].y = 1;
-	p1.BigShip[0].x = 0;
-	p1.BigShip[0].y = 2;
-	p1.BigShip[1].x = 1;
-	p1.BigShip[1].y = 2;
-	p1.BigShip[2].x = 2;
-	p1.BigShip[2].y = 2;
+	//p1.smallShip[0].x = 0; //Remember to set the hole ship!!!!!
+	//p1.smallShip[0].y = 0;
+	//p1.mediumShip[0].x = 0;
+	//p1.mediumShip[0].y = 1;
+	//p1.mediumShip[1].x = 1;
+	//p1.mediumShip[1].y = 1;
+	//p1.BigShip[0].x = 0;
+	//p1.BigShip[0].y = 2;
+	//p1.BigShip[1].x = 1;
+	//p1.BigShip[1].y = 2;
+	//p1.BigShip[2].x = 2;
+	//p1.BigShip[2].y = 2;
 	p1.shipsFieldsLeft = 1;
 	
 	p2.name[0] = 'P';
 	p2.name[1] = '2';
-	p2.smallShip[0].x = 0;
-	p2.smallShip[0].y = 0;
-	p2.mediumShip[0].x = 0;
-	p2.mediumShip[0].y = 1;
-	p2.BigShip[0].x = 0;
-	p2.BigShip[0].y = 2;
+	//p2.smallShip[0].x = 0;
+	//p2.smallShip[0].y = 0;
+	//p2.mediumShip[0].x = 0;
+	//p2.mediumShip[0].y = 1;
+	//p2.BigShip[0].x = 0;
+	//p2.BigShip[0].y = 2;
 	p2.shipsFieldsLeft = 1;
-	
+	NewGame(&p1, &p2);
 	DisplayInit();
 	initIRQInterrupt();
 	sei(); // Global interrupt enable
-	//DrawBackground();
+	DrawBackground();
 	//int c=1;
 	//int length = snprintf( NULL, 0, "%d", c );
 	//char* str = malloc( length + 1 );
@@ -64,6 +63,7 @@ int main(void)
 	DisplayOn();
     while (1) 
     {
+		//handleSetShipState(1,1);
     }
 }
 
@@ -71,18 +71,24 @@ int main(void)
 // Interrupt service rutine for INT2
 ISR (INT4_vect)
 {
+	//DrawShip(1,1,1);
 	EIMSK &= ~(0b00010000);
 	unsigned int x = readTouchXInput();
 	unsigned int y = readTouchYInput();
-	Shot.x = GetMapXKoord(x); 
-	Shot.y = GetMapYKoord(y); 
+	int xkoord = GetMapXKoord(x); 
+	int ykoord = GetMapYKoord(y);
+	Shot.x = xkoord;
+	Shot.y = ykoord;
 	
 	switch(GetGameState()){
 		case PreGameState:
 			handlePreGameState();
 			break;
+		case BeforeSetShipState:
+			handleBeforeSetShipState();
+			break;
 		case SetShipState:
-			handleIdleState();
+			handleSetShipState(xkoord, ykoord);
 			break;
 		case IdleState:
 			handleIdleState();
@@ -123,8 +129,32 @@ void handlePreGameState(){
 	NextState();
 }
 
-void handleSetShipState(){
+void handleBeforeSetShipState(){
+	DrawBackground();
+	NextState();
+}
+
+void handleSetShipState(int x, int y){
+	Player *player;
+	int lastPlayer = 0;
+	if(p1.BigShip[0].x==0){
+		player = &p1;
+	}
+	else{
+		player = &p2;
+		lastPlayer = 1;
+	}
+	SetShip(player, x, y);
 	
+	if(player->BigShip[0].x!=0){
+		if(lastPlayer){
+			NextState();
+		}else{
+			PreviousState();
+			PreviousState();
+		}
+	}
+
 }
 
 void handleAttackState(){

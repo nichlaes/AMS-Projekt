@@ -20,6 +20,9 @@ void NextState(){
 		turnNumber++;
 	} else gameState++;
 }
+void PreviousState(){
+	gameState--;
+}
 
 void NewGame(Player *p1, Player *p2){
 	gameState = PreGameState;
@@ -118,4 +121,26 @@ int checkIFShotHitShip(Player *opp, const Point shot){
 		}	
 	}
 	return 0;
+}
+void SetShip(Player *player, int x, int y){
+	if(player->smallShip[0].x==0){
+		player->smallShip[0].x = x;
+		player->smallShip[0].y = y;
+		DrawShip(SMALLSHIPSIZE,x,y);
+	}else if(player->mediumShip[0].x==0){
+		player->mediumShip[0].x=x;
+		player->mediumShip[1].x=x+1;
+		player->mediumShip[0].y=y;
+		player->mediumShip[1].y=y;
+		DrawShip(MEDIUMSHIPSIZE,x,y);
+	}
+	else if(player->BigShip[0].x==0){
+		player->BigShip[0].x = x;
+		player->BigShip[0].x = x+1;
+		player->BigShip[0].x = x+2;
+		player->BigShip[0].y = y;
+		player->BigShip[0].y = y;
+		player->BigShip[0].y = y;
+		DrawShip(BIGSHIPSIZE,x,y);
+	}
 }

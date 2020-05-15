@@ -46,8 +46,8 @@ void DrawText(char *text, unsigned int startx, unsigned int starty, unsigned int
 
 void DrawShip(int size, int startx, int starty){
 	char *c=getStartShip();
-	startx = startx*tileWidth;
-	starty = starty*tileHeight+5;
+	startx = (startx-1)*tileWidth;
+	starty = (starty-1)*tileHeight+5;
 	if(startx == 0){startx+=5;}
 	writeSymbol(c, 0,0,0, (startx + (45-32)/2), (starty +((45-32)/2)), 16, 16, 2);
 	int i = 2;
