@@ -269,48 +269,23 @@ void writeTouchData(char data){
 	delayNop(3); //minimum 100ns
 	for (int i=0;i<8;i++){
 		
-		PORTG |= (data<<i & 0b10000000)>>2; //Sets D_IN
+		if(data<<i & 0b10000000){
+			DIN_PORT |=1<<DIN_BIT;
+		}else{
+			DIN_PORT&=~(1<<DIN_BIT);
+		}
 		CLK_PORT |= 1<<CLK_BIT; //Sets CLK high
 		delayNop(6); //min 200ns
 		CLK_PORT &= ~(1<<CLK_BIT); //Sets CLK low
 		delayNop(6); //min 200ns
 	}
-		//char command = 0;
-	//
-	//for(int i = 7; i>-1; i--)
-	//{
-		//command = (data>>i) & 0b00000001;
-		//if(command == 0)
-		//{
-			////setting D_in
-			///*char temp = 0xFF;
-			//temp &= (~1<<DIN_BIT);
-			//DIN_PORT |= temp;*/
-			//DIN_PORT &= (~(1<<DIN_BIT));
-		//}
-		//else if(command == 1)
-		//{
-			////setting D_in
-			//DIN_PORT |= (1<<DIN_BIT);
-		//}
-		//
-		////set clock high
-		//CLK_PORT |= (1<<CLK_BIT);
-		//_NOP();
-		//_NOP();
-		//_NOP();
-		//_NOP();
-		//
-		////set clock low
-		//CLK_PORT &= (~1<<CLK_BIT);
-		
-	//}
 }
 
 unsigned int readTouchData(){
 	unsigned int data = 0;
 	for (int i=0;i<12;i++){
-		data = data<<i;
+		data = data<<1;
+
 		CLK_PORT |= (1<<CLK_BIT); //Sets CLK high 
 		delayNop(2); // minimum 200ns
 		data |=  (0b00000001 & (DOUT_PORT>>DOUT_BIT));
@@ -321,28 +296,6 @@ unsigned int readTouchData(){
 	}
 	CS_TOUCH_PORT &= (~1<<CS_TOUCH_BIT);
 	return data;
-		//unsigned int data = 0;
-		//unsigned int temp = 0;
-		//for(int i = 11; i>-1; i--)
-		//{
-			////set clock high
-			//CLK_PORT |= (1<<CLK_BIT);
-			//_NOP();
-			//_NOP();
-			////read Dout to res
-			//temp = DOUT_PORT>>DOUT_BIT &0b00000001;
-			//data |= temp<<i;
-			//
-			//_NOP();
-			//
-			////set clock low
-			//CLK_PORT &= (~1<<CLK_BIT);
-			//_NOP();
-			//_NOP();
-			//_NOP();
-			//_NOP();
-		//}
-		//return data;
 }
 
 unsigned int readTouchXInput()

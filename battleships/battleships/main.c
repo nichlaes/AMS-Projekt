@@ -66,10 +66,9 @@ int main(void)
 ISR (INT4_vect)
 {
 	EIMSK &= ~(0b00010000);
-	unsigned int y = GetYPosition();
-	unsigned int x = GetXPosition();
-	y= GetYPosition();
-	x = GetXPosition();
+	unsigned int y = readTouchYInput();
+	unsigned int x = readTouchXInput();
+
 	Shot.y = GetMapXKoord(x); // opposite
 	Shot.x = GetMapYKoord(y); // opposite
 	
