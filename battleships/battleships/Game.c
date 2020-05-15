@@ -7,7 +7,7 @@
 
 #include "Game.h"
 
-static enum State gameState = IdleState;
+static enum State gameState = PreGameState;
 static unsigned int turnNumber = 1;
 
 int GetGameState(){
@@ -22,7 +22,7 @@ void NextState(){
 }
 
 void NewGame(Player *p1, Player *p2){
-	gameState = IdleState;
+	gameState = PreGameState;
 	turnNumber = 1;
 	
 	for (int i = 0; i<p1->shotsFired; i++)

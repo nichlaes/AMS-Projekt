@@ -78,6 +78,9 @@ ISR (INT4_vect)
 	Shot.y = GetMapYKoord(y); 
 	
 	switch(GetGameState()){
+		case PreGameState:
+			handlePreGameState();
+			break;
 		case SetShipState:
 			handleIdleState();
 			break;
@@ -107,6 +110,19 @@ void initIRQInterrupt(){
 	// Enable extern interrupt INT4
 	EIMSK |= 0b00010000;
 }
+
+void handlePreGameState(){
+	ClearScreen();
+	Player *currentPlayer;
+	if (p1.BigShip[0].x == 0){
+		currentPlayer = &p1;
+	} else currentPlayer = &p2;
+	DrawText(currentPlayer->name, 135,20, 2);
+	DrawText("please place", 80, 100, 1);
+	DrawText("your battleships", 90, 150, 1);
+	NextState();
+}
+
 void handleSetShipState(){
 	
 }
@@ -172,11 +188,10 @@ void handleGameOverState(){
 	int shipsLeft = player->shipsFieldsLeft;
 	int length1 = snprintf( NULL, 0, "%d",  shipsLeft);
 	char* str1 = malloc( length1 + 1 );
-	snprintf( str1, length1 + 1+14, "%d%s", shipsLeft, " nonhit fields" );
+	snprintf( str1, length1 + 1+14, "%d%s", shipsLeft, " Ship-fields left" );
 	
-
 	DrawText(str1, 65, 180, 1);
-	
+
 	free(str);
 	free(str1);
 	NewGame(&p1, &p2);	
