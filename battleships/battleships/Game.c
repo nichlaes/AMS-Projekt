@@ -128,19 +128,33 @@ void SetShip(Player *player, int x, int y){
 		player->smallShip[0].y = y;
 		DrawShip(SMALLSHIPSIZE,x,y);
 	}else if(player->mediumShip[0].x==0){
-		player->mediumShip[0].x=x;
-		player->mediumShip[1].x=x+1;
-		player->mediumShip[0].y=y;
-		player->mediumShip[1].y=y;
-		DrawShip(MEDIUMSHIPSIZE,x,y);
+		if(x<5){
+			if(player->smallShip[0].y==y &&(player->smallShip[0].x == x || player->smallShip[0].x == x+1))
+			{return;}
+			player->mediumShip[0].x=x;
+			player->mediumShip[1].x=x+1;
+			player->mediumShip[0].y=y;
+			player->mediumShip[1].y=y;
+			DrawShip(MEDIUMSHIPSIZE,x,y);
+		}
 	}
 	else if(player->BigShip[0].x==0){
-		player->BigShip[0].x = x;
-		player->BigShip[0].x = x+1;
-		player->BigShip[0].x = x+2;
-		player->BigShip[0].y = y;
-		player->BigShip[0].y = y;
-		player->BigShip[0].y = y;
-		DrawShip(BIGSHIPSIZE,x,y);
+		if(x<4){
+			if((player->smallShip[0].y==y &&(player->smallShip[0].x == x || player->smallShip[0].x == x+1||player->smallShip[0].x==x+2))
+			||(player->mediumShip[0].y==y && (player->mediumShip[0].x == x || player->mediumShip[0].x == x+1 || player->mediumShip[0].x == x+2
+			||player->mediumShip[1].x == x || player->mediumShip[1].x == x+1 || player->mediumShip[1].x == x+2
+			)))
+			{
+				return;
+			}
+				
+			player->BigShip[0].x = x;
+			player->BigShip[1].x = x+1;
+			player->BigShip[2].x = x+2;
+			player->BigShip[0].y = y;
+			player->BigShip[1].y = y;
+			player->BigShip[2].y = y;
+			DrawShip(BIGSHIPSIZE,x,y);
+		}
 	}
 }

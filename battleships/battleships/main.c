@@ -70,32 +70,34 @@ ISR (INT4_vect)
 	int ykoord = GetMapYKoord(y);
 	Shot.x = xkoord;
 	Shot.y = ykoord;
-	
-	switch(GetGameState()){
-		case PreGameState:
+	if(xkoord!=0  && ykoord !=0){
+		switch(GetGameState()){
+			case PreGameState:
 			handlePreGameState();
 			break;
-		case BeforeSetShipState:
+			case BeforeSetShipState:
 			handleBeforeSetShipState();
 			break;
-		case SetShipState:
+			case SetShipState:
 			handleSetShipState(xkoord, ykoord);
 			break;
-		case IdleState:
+			case IdleState:
 			handleIdleState();
 			break;
-		case AttackState:
+			case AttackState:
 			handleAttackState();
 			break;
-		case EndState:
+			case EndState:
 			handleEndState();
 			break;
-		case GameOverState:
+			case GameOverState:
 			handleGameOverState();
 			break;
-		default:
+			default:
 			break;
+		}	
 	}
+	
 	_delay_ms(200);
 	EIMSK |= 0b00010000;
 }
