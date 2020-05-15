@@ -34,8 +34,10 @@ typedef struct Player
 int TakeShot(Player *player, Point shot, Player *opponent);
 int GetGameState();
 void NextState();
+void PreviousState();
 void EndGame();
 int GetCurrentPlayer();
 int GetTurnNumber();
 void NewGame(Player *p1, Player *p2);
+void SetShip(Player *player, int x, int y);
 #endif /* GAME_H_ */
