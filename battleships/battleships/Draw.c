@@ -93,5 +93,24 @@ void DrawPlayer(Player *player){
 	{
 		DrawShot(player->Shots[i]);
 	}
+	
+	for (int i = 0; i<BIGSHIPSIZE; i++)
+	{
+		if(i < SMALLSHIPSIZE){
+			if (player->smallShip[i].hit == 1){
+				DrawHit(player->smallShip[i]);
+			}
+		}
+		if(i < MEDIUMSHIPSIZE){
+			if (player->mediumShip[i].hit == 1){
+				DrawHit(player->mediumShip[i]);
+			}
+		}
+		if(i < BIGSHIPSIZE){
+			if (player->BigShip[i].hit == 1){
+				DrawHit(player->BigShip[i]);
+			}
+		}
+	}
 		
 }
