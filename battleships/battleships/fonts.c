@@ -4,7 +4,8 @@
  * Created: 03-05-2020 14:09:41
  *  Author: Tobias
  */ 
-/* q */
+
+//https://github.com/cjingeberg/AMS_Project/blob/master/TouchScreenDriver/Drivers/font.c
 void initCharacters()
 {
 	
