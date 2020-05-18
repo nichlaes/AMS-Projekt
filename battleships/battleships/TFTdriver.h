@@ -22,6 +22,5 @@ unsigned int StartX, unsigned int StartY, unsigned int Width, unsigned int Heigh
 unsigned int sizeMultiplier);
 void writeTouchData(char);
 unsigned int readTouchData();
-void pulseCLK();
 
 

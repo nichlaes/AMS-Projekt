@@ -25,34 +25,17 @@ int main(void)
 	p1.name[0] = 'P';
 	p1.name[1] = '1';
 	p1.name[2] = '\0';
-	//p1.smallShip[0].x = 0; //Remember to set the hole ship!!!!!
-	//p1.smallShip[0].y = 0;
-	//p1.mediumShip[0].x = 0;
-	//p1.mediumShip[0].y = 1;
-	//p1.mediumShip[1].x = 1;
-	//p1.mediumShip[1].y = 1;
-	//p1.BigShip[0].x = 0;
-	//p1.BigShip[0].y = 2;
-	//p1.BigShip[1].x = 1;
-	//p1.BigShip[1].y = 2;
-	//p1.BigShip[2].x = 2;
-	//p1.BigShip[2].y = 2;
-	p1.shipsFieldsLeft = 1;
 	
 	p2.name[0] = 'P';
 	p2.name[1] = '2';
-	//p2.smallShip[0].x = 0;
-	//p2.smallShip[0].y = 0;
-	//p2.mediumShip[0].x = 0;
-	//p2.mediumShip[0].y = 1;
-	//p2.BigShip[0].x = 0;
-	//p2.BigShip[0].y = 2;
-	p2.shipsFieldsLeft = 1;
 	NewGame(&p1, &p2);
 	DisplayInit();
 	initIRQInterrupt();
 	sei(); // Global interrupt enable
 	DisplayOn();
+	DrawText("battle", 50,50, 2);
+	DrawText("ships", 50,100, 2);
+	DrawText("tap to begin", 50, 150, 1);
     while (1) 
     {
     }
@@ -62,7 +45,6 @@ int main(void)
 // Interrupt service rutine for INT2
 ISR (INT4_vect)
 {
-	//DrawShip(1,1,1);
 	EIMSK &= ~(0b00010000);
 	unsigned int x = readTouchXInput();
 	unsigned int y = readTouchYInput();
@@ -116,9 +98,9 @@ void handlePreGameState(){
 	if (p1.BigShip[0].x == 0){
 		currentPlayer = &p1;
 	} else currentPlayer = &p2;
-	DrawText(currentPlayer->name, 135,20, 2);
+	DrawText(currentPlayer->name, 135,50, 2);
 	DrawText("please place", 80, 100, 1);
-	DrawText("your battleships", 90, 150, 1);
+	DrawText("your battleships", 50, 150, 1);
 	NextState();
 }
 
@@ -147,7 +129,6 @@ void handleSetShipState(int x, int y){
 			PreviousState();
 		}
 	}
-
 }
 
 void handleAttackState(){
@@ -205,18 +186,20 @@ void handleGameOverState(){
 	snprintf(name, sizeof name, "%s%s", "Winner ", player->name);
 	int length = snprintf( NULL, 0, "%d",  GetTurnNumber());
 	char* str = malloc( length + 1 );
-	snprintf( str, length + 1+11, "%s%d%s", "took ", GetTurnNumber(), " turns" );
+	snprintf( str, length + 1+11, "%s%d%s", "took ", GetTurnNumber()/2, " turns" );
 	DrawText(name, 25, 50, 2);
 	DrawText(str, 65, 120, 1);
 	int shipsLeft = player->shipsFieldsLeft;
 	int length1 = snprintf( NULL, 0, "%d",  shipsLeft);
 	char* str1 = malloc( length1 + 1 );
-	snprintf( str1, length1 + 1+14, "%d%s", shipsLeft, " Ship-fields left" );
+	snprintf( str1, length1 + 1+17, "%d%s", shipsLeft, " Ship-fields left" );
 	
-	DrawText(str1, 65, 180, 1);
+	DrawText(str1, 50, 180, 1);
 
 	free(str);
 	free(str1);
 	NewGame(&p1, &p2);	
 }
+
+
 

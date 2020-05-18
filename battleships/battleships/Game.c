@@ -52,15 +52,27 @@ void NewGame(Player *p1, Player *p2){
 	{
 		if(i < SMALLSHIPSIZE){
 			p1->smallShip[i].hit = 0;
+			p1->smallShip[i].x = 0;
+			p1->smallShip[i].y = 0;
 			p2->smallShip[i].hit = 0;
+			p2->smallShip[i].x = 0;
+			p2->smallShip[i].y = 0;
 		}
 		if(i < MEDIUMSHIPSIZE){
 			p1->mediumShip[i].hit = 0;
+			p1->mediumShip[i].x = 0;
+			p1->mediumShip[i].y = 0;
 			p2->mediumShip[i].hit = 0;
+			p2->mediumShip[i].x = 0;
+			p2->mediumShip[i].y = 0;
 		}
 		if(i < BIGSHIPSIZE){
 			p1->BigShip[i].hit = 0;
+			p1->BigShip[i].x = 0;
+			p1->BigShip[i].y = 0;
 			p2->BigShip[i].hit = 0;
+			p2->BigShip[i].x = 0;
+			p2->BigShip[i].y = 0;
 		}
 	}
 }
