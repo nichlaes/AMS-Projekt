@@ -1,8 +1,8 @@
-/*
- * Game.c
- *
- * Created: 13/05/2020 11.10.13
- *  Author: Nichl
+/* ITAMSF20
+ * AMS-Projekt
+ * Battle Ships
+ * Date: 29/05/2020
+ * Author : Tobias Apollo Lauridsen (201705755) & Nichlaes Hytting Sørensen (201706553)
  */ 
 
 #include "Game.h"
