@@ -1,8 +1,8 @@
-/*
- * TouchHelper.c
- *
- * Created: 15/05/2020 12.49.49
- *  Author: Nichl
+/* ITAMSF20
+ * AMS-Projekt
+ * Battle Ships
+ * Date: 29/05/2020
+ * Author : Tobias Apollo Lauridsen (201705755) & Nichlaes Hytting Sørensen (201706553)
  */ 
 
 #include "TouchHelper.h"

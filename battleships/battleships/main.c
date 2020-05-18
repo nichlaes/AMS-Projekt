@@ -186,7 +186,7 @@ void handleGameOverState(){
 	snprintf(name, sizeof name, "%s%s", "Winner ", player->name);
 	int length = snprintf( NULL, 0, "%d",  GetTurnNumber());
 	char* str = malloc( length + 1 );
-	snprintf( str, length + 1+11, "%s%d%s", "took ", GetTurnNumber()/2, " turns" );
+	snprintf( str, length + 1+11, "%s%d%s", "took ", (GetTurnNumber()+1)/2, " turns" );
 	DrawText(name, 25, 50, 2);
 	DrawText(str, 65, 120, 1);
 	int shipsLeft = player->shipsFieldsLeft;

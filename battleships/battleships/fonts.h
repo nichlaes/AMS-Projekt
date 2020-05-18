@@ -1,8 +1,8 @@
-/*
- * fonts.h
- *
- * Created: 03-05-2020 14:10:12
- *  Author: Tobias
+/* ITAMSF20
+ * AMS-Projekt
+ * Battle Ships
+ * Date: 29/05/2020
+ * Author : Tobias Apollo Lauridsen (201705755) & Nichlaes Hytting Sørensen (201706553)
  */ 
 
 
