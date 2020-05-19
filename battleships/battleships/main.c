@@ -1,8 +1,8 @@
-/* ITAMSF20
- * AMS-Projekt
- * Battle Ships
- * Date: 29/05/2020
- * Author : Tobias Apollo Lauridsen (201705755) & Nichlaes Hytting Sørensen (201706553)
+/*
+ * battleships.c
+ *
+ * Created: 02/04/2020 09.06.15
+ * Author : Nichl
  */ 
 
 #include <avr/io.h>
@@ -48,36 +48,39 @@ ISR (INT4_vect)
 	EIMSK &= ~(0b00010000);
 	unsigned int x = readTouchXInput();
 	unsigned int y = readTouchYInput();
-	int xkoord = GetMapXKoord(x); 
+	int xkoord = GetMapXKoord(x);
 	int ykoord = GetMapYKoord(y);
 	Shot.x = xkoord;
 	Shot.y = ykoord;
-	if(xkoord!=0  && ykoord !=0){
-		switch(GetGameState()){
-			case PreGameState:
+	
+	switch(GetGameState()){
+		case PreGameState:
 			handlePreGameState();
 			break;
-			case BeforeSetShipState:
+		case BeforeSetShipState:
 			handleBeforeSetShipState();
 			break;
-			case SetShipState:
-			handleSetShipState(xkoord, ykoord);
+		case SetShipState:
+			if(xkoord!=0  && ykoord !=0){
+				handleSetShipState(xkoord, ykoord);
+			}
 			break;
-			case IdleState:
+		case IdleState:
 			handleIdleState();
 			break;
-			case AttackState:
+		case AttackState:
 			handleAttackState();
 			break;
-			case EndState:
-			handleEndState();
+		case EndState:
+			if(xkoord!=0  && ykoord !=0){
+				handleEndState();
+			}
 			break;
-			case GameOverState:
+		case GameOverState:
 			handleGameOverState();
 			break;
-			default:
-			break;
-		}	
+		default:
+			break;			
 	}
 	
 	_delay_ms(200);
@@ -186,7 +189,7 @@ void handleGameOverState(){
 	snprintf(name, sizeof name, "%s%s", "Winner ", player->name);
 	int length = snprintf( NULL, 0, "%d",  GetTurnNumber());
 	char* str = malloc( length + 1 );
-	snprintf( str, length + 1+11, "%s%d%s", "took ", (GetTurnNumber()+1)/2, " turns" );
+	snprintf( str, length + 1+11, "%s%d%s", "took ", GetTurnNumber()/2, " turns" );
 	DrawText(name, 25, 50, 2);
 	DrawText(str, 65, 120, 1);
 	int shipsLeft = player->shipsFieldsLeft;
