@@ -33,9 +33,10 @@ int main(void)
 	initIRQInterrupt();
 	sei(); // Global interrupt enable
 	DisplayOn();
-	DrawText("battle", 50,50, 2);
-	DrawText("ships", 50,100, 2);
-	DrawText("tap to begin", 50, 150, 1);
+	//DrawText("battle", 50,50, 2);
+	//DrawText("ships", 50,100, 2);
+	//DrawText("tap to begin", 50, 150, 1);
+	DrawBackground();
     while (1) 
     {
     }
@@ -53,37 +54,49 @@ ISR (INT4_vect)
 	Shot.x = xkoord;
 	Shot.y = ykoord;
 	
-	switch(GetGameState()){
-		case PreGameState:
-			handlePreGameState();
-			break;
-		case BeforeSetShipState:
-			handleBeforeSetShipState();
-			break;
-		case SetShipState:
-			if(xkoord!=0  && ykoord !=0){
-				handleSetShipState(xkoord, ykoord);
-			}
-			break;
-		case IdleState:
-			handleIdleState();
-			break;
-		case AttackState:
-			handleAttackState();
-			break;
-		case EndState:
-			if(xkoord!=0  && ykoord !=0){
-				handleEndState();
-			}
-			break;
-		case GameOverState:
-			handleGameOverState();
-			break;
-		default:
-			break;			
-	}
+	int length = snprintf( NULL, 0, "%d",  x);
+	char* str = malloc( 5 + 1 );
+	snprintf( str, length+1, "%d", x);
 	
-	_delay_ms(200);
+	int lengthy = snprintf(NULL, 0, "%d", y);
+	char* stry = malloc(lengthy +1 );
+	snprintf(stry, lengthy+1, "%d", y);
+	
+	DrawText(str, 10,10,1);
+	DrawText(stry, 10,10+16,1);
+	
+	
+	//switch(GetGameState()){
+		//case PreGameState:
+			//handlePreGameState();
+			//break;
+		//case BeforeSetShipState:
+			//handleBeforeSetShipState();
+			//break;
+		//case SetShipState:
+			//if(xkoord!=0  && ykoord !=0){
+				//handleSetShipState(xkoord, ykoord);
+			//}
+			//break;
+		//case IdleState:
+			//handleIdleState();
+			//break;
+		//case AttackState:
+			//handleAttackState();
+			//break;
+		//case EndState:
+			//if(xkoord!=0  && ykoord !=0){
+				//handleEndState();
+			//}
+			//break;
+		//case GameOverState:
+			//handleGameOverState();
+			//break;
+		//default:
+			//break;			
+	//}
+	
+	//_delay_ms(200);
 	EIMSK |= 0b00010000;
 }
 
